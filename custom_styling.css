@@ -1,0 +1,50 @@
+:root {
+    --green: #f8481f;
+    --main-tertiary: #72aec4;
+    --btn-bg: #fa9a4d;
+    --btn-border-color: #ff7849;
+    --btn-text-color: #ff7849;
+}
+
+.grad-1 {
+    background-image: linear-gradient(to right, #4b4c9f, #3788bf);
+}
+
+.grad-2 {
+    background-image: linear-gradient(to right, #ff7849, #fa9a4d);
+}
+
+.badge-main-warning {
+    background: #ede9e9;
+    color: #f8481f;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #6b9de8;
+    border-color: #0d6efd;
+}
+
+.btn-outline-primary {
+    color: #f8481f;
+    border-color: #ff7849;
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #fa9a4d;
+    border-color: #ff7849;
+}
+
+.btn-check:active+.btn-outline-primary, .btn-check:checked+.btn-outline-primary, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show, .btn-outline-primary:active {
+    color: #fff;
+    background-color: #ff7849;
+    border-color: #ff7849;
+}
+
+.main-pager .page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #f8481f;
+    border-color: #f8481f;
+}

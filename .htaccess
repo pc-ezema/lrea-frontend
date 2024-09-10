@@ -1,0 +1,260 @@
+# HTML5BoilerPlate .Htaccess implementation example
+# https://github.com/h5bp/html5-boilerplate/blob/master/.htaccess
+
+<IfModule mod_security.c>
+	SecFilterEngine Off
+	SecFilterScanPOST Off
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# | Rewrite engine                                                             |
+# ------------------------------------------------------------------------------
+
+# Turn on the rewrite engine and enable the `FollowSymLinks` option (this is
+# necessary in order for the following directives to work).
+
+# If your web host doesn't allow the `FollowSymlinks` option, you may need to
+# comment it out and use `Options +SymLinksIfOwnerMatch`, but be aware of the
+# performance impact.
+# http://httpd.apache.org/docs/current/misc/perf-tuning.html#symlinks
+
+# Also, some cloud hosting services require `RewriteBase` to be set.
+# http://www.rackspace.com/knowledge_center/frequently-asked-question/why-is-mod-rewrite-not-working-on-my-site
+
+<IfModule mod_rewrite.c>
+    Options +FollowSymlinks
+  # Options +SymLinksIfOwnerMatch
+    RewriteEngine On
+  # RewriteBase /
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# | Suppressing the `www.` at the beginning of URLs			                   |
+# ------------------------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+    # RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+
+    # I am forcing HTTPS here as well since it doesn't affect localhost
+    RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L] 
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# | Force HTTPS when not localhost			                                   |
+# ------------------------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+  #  RewriteCond %{HTTPS} !=on
+  #  RewriteCond %{HTTP_HOST} ^lrea.co.uk$ 
+  #  RewriteRule ^(.*)$ https://lrea.co.uk [L,R=301,NE]
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# | Site Maintenance Redirecting                                               |
+# ------------------------------------------------------------------------------
+
+#RewriteCond %{REQUEST_URI} !/maintenance.html$ 
+#RewriteCond %{REMOTE_HOST} !^62\.193\.161\.216
+
+#RewriteRule $ /maintenance.html [R=302,L]
+
+# ------------------------------------------------------------------------------
+# | URL Rewrites				                                               |
+# ------------------------------------------------------------------------------
+
+RewriteRule ^partner-schools/?$ https://lrea.co.uk/partners [R=301,NC,L]
+
+# For newsletter preview
+RewriteRule ^email/preview/([a-z0-9_-]+)?$		ui-test/prototype/newsletter/$1.php?preview=true					        [NC,L]	
+
+# For newsletter images
+RewriteRule ^email/images/([a-z0-9_-]+)\.(jpg|jpeg|gif|png|svg)$		ui-test/prototype/newsletter/images/$1.$2			        [NC,L]	
+
+RewriteRule ^ads/click/([a-z0-9_-]+)/([0-9]+)/([0-9]+)?$		      template--ads__click.php?country=$1&course_id=$2&publisher=$3	         [QSA,NC,L]
+
+# Uncomment this when testing on production server
+RewriteRule ^grant/([a-z0-9]{6})$									                                    portal/user-register.php?refc=$1			             [QSA,NC,L] 
+
+# Uncomment this when testing on development server
+# RewriteRule ^grant/([a-z0-9]{6})$									                                    ../new_portal/user-register.php?refc=$1			 [QSA,NC,L] 
+
+RewriteRule ^(.+?/)?error/404/?$			404.php		[QSA,NC,L]
+
+RewriteRule ^/?$									                                            router.php          							                          [QSA,NC,L]
+RewriteRule ^([a-z0-9_-]+)/?$									                                router.php?part_1=$1							                          [QSA,NC,L]
+RewriteRule ^([a-z0-9_-]+)/([a-z0-9_-]+)/?$							                      router.php?part_1=$1&part_2=$2					                    [QSA,NC,L]
+RewriteRule ^([a-z0-9_-]+)/([a-z0-9_-]+)/([a-z0-9_-]+)/?$							        router.php?part_1=$1&part_2=$2&part_3=$3					          [QSA,NC,L]
+RewriteRule ^([a-z0-9_-]+)/([a-z0-9_-]+)/([a-z0-9_-]+)/([a-z0-9_-]+)/?$				router.php?part_1=$1&part_2=$2&part_3=$3&part_4=$4					[QSA,NC,L]
+
+RewriteRule ^sitemap.xml$									                                    sitemap-generator.php?index=all							            [QSA,NC,L]
+RewriteRule ^sitemap-all.xml$									                                sitemap-generator.php?index=all							                [QSA,NC,L]
+RewriteRule ^sitemap-([0-9]+).xml$									                          sitemap-generator.php?index=$1							                [QSA,NC,L]
+
+# ------------------------------------------------------------------------------
+# | Cache busting for CSS, JAVASCRIPT, PICTURES AND OTHER FILES                |
+# ------------------------------------------------------------------------------
+
+RewriteRule ^/?(\d+)-(images/.+)?$		$2					        [NC,L]	
+RewriteRule ^/?ty(\d+)-(images/.+)?$		$2					        [NC,L]	
+
+RewriteRule ^/?js/ver-(\d+)-(.+)?$		js/$2					[NC,L]	
+RewriteRule ^/?js/ver-ty(\d+)-(.+)?$		js/$2					[NC,L]	
+
+RewriteRule ^/?css/style(-\d+)?.css$		  css/style.css				[NC,L]	
+RewriteRule ^/?css/style(-ty\d+)?.css$		  css/style.css				[NC,L]	
+
+RewriteRule ^/?css/ui_ux_stylings(-\d+)?.css$		  css/ui_ux_stylings.css				[NC,L]	
+RewriteRule ^/?css/ui_ux_stylings(-ty\d+)?.css$		  css/ui_ux_stylings.css				[NC,L]	
+
+# ------------------------------------------------------------------------------
+# | File access                                                                |
+# ------------------------------------------------------------------------------
+
+# Block access to directories without a default document.
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
+
+# Block access to hidden files and directories.
+# This includes directories used by version control systems such as Git and SVN.
+<IfModule mod_rewrite.c>
+    RewriteCond %{SCRIPT_FILENAME} -d [OR]
+    RewriteCond %{SCRIPT_FILENAME} -f
+    RewriteRule "(^|/)\." - [F]
+</IfModule>
+
+# Block access to files that can expose sensitive information.
+<FilesMatch "(^#.*#|\.(htaccess|htpasswd|phps|bak|config|dist|fla|in[ci]|log|psd|sh|sql|sw[op])|~)$">
+
+    # Apache < 2.3
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+        Satisfy All
+    </IfModule>
+
+    # Apache ≥ 2.3
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+
+</FilesMatch>
+
+# ------------------------------------------------------------------------------
+# | Compression                                                                |
+# ------------------------------------------------------------------------------
+
+<IfModule mod_deflate.c>
+
+    # Force compression for mangled headers.
+    # http://developer.yahoo.com/blogs/ydn/posts/2010/12/pushing-beyond-gzipping
+    <IfModule mod_setenvif.c>
+        <IfModule mod_headers.c>
+            SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+            RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+        </IfModule>
+    </IfModule>
+
+    # Compress all output labeled with one of the following MIME-types
+    <IfModule mod_filter.c>
+        AddOutputFilterByType DEFLATE application/atom+xml \
+                                      application/javascript \
+                                      application/json \
+                                      application/ld+json \
+                                      application/rss+xml \
+                                      application/vnd.ms-fontobject \
+                                      application/x-font-ttf \
+                                      application/x-web-app-manifest+json \
+                                      application/xhtml+xml \
+                                      application/xml \
+                                      font/opentype \
+                                      image/svg+xml \
+                                      image/x-icon \
+                                      text/css \
+                                      text/html \
+                                      text/plain \
+                                      text/x-component \
+                                      text/xml
+    </IfModule>
+
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# | ETags                                                                      |
+# ------------------------------------------------------------------------------
+
+# Remove `ETags` as resources are sent with far-future expires headers.
+# `FileETag None` doesn't work in all cases.
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+
+FileETag None
+
+# ------------------------------------------------------------------------------
+# | Expires headers                                                            |
+# ------------------------------------------------------------------------------
+
+# The following expires headers are set pretty far in the future. If you
+# don't control versioning with filename-based cache busting, consider
+# lowering the cache time for resources such as style sheets and JavaScript
+# files to something like one week.
+
+<IfModule mod_expires.c>
+
+    ExpiresActive on
+    ExpiresDefault                                      "access plus 1 month"
+
+  # CSS
+    ExpiresByType text/css                              "access plus 1 year"
+
+  # Data interchange
+    ExpiresByType application/json                      "access plus 0 seconds"
+    ExpiresByType application/ld+json                   "access plus 0 seconds"
+    ExpiresByType application/xml                       "access plus 0 seconds"
+    ExpiresByType text/xml                              "access plus 0 seconds"
+
+  # Favicon (cannot be renamed!) and cursor images
+    ExpiresByType image/x-icon                          "access plus 1 week"
+
+  # HTML components (HTCs)
+    ExpiresByType text/x-component                      "access plus 1 month"
+
+  # HTML
+    ExpiresByType text/html                             "access plus 0 seconds"
+
+  # JavaScript
+    ExpiresByType application/javascript                "access plus 1 year"
+
+  # Manifest files
+    ExpiresByType application/x-web-app-manifest+json   "access plus 0 seconds"
+    ExpiresByType text/cache-manifest                   "access plus 0 seconds"
+
+  # Media
+    ExpiresByType audio/ogg                             "access plus 1 month"
+    ExpiresByType image/gif                             "access plus 1 month"
+    ExpiresByType image/jpeg                            "access plus 1 month"
+    ExpiresByType image/png                             "access plus 1 month"
+    ExpiresByType video/mp4                             "access plus 1 month"
+    ExpiresByType video/ogg                             "access plus 1 month"
+    ExpiresByType video/webm                            "access plus 1 month"
+
+  # Web feeds
+    ExpiresByType application/atom+xml                  "access plus 1 hour"
+    ExpiresByType application/rss+xml                   "access plus 1 hour"
+
+  # Web fonts
+    ExpiresByType application/font-woff                 "access plus 1 month"
+    ExpiresByType application/vnd.ms-fontobject         "access plus 1 month"
+    ExpiresByType application/x-font-ttf                "access plus 1 month"
+    ExpiresByType font/opentype                         "access plus 1 month"
+    ExpiresByType image/svg+xml                         "access plus 1 month"
+
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# | Error Document			                                                   |
+# ------------------------------------------------------------------------------
+
+ErrorDocument 404 /lrea-dev-site/error/404
