@@ -448,7 +448,8 @@ function mark_seen_ticket_reply($response_id = '', $contact_message = false) { /
 } /* End_check for "mark_seen_ticket_reply" */
 
 // Randomly generate student number()
-function generate_random_student_number() {
+function generate_random_student_number() 
+{
     // Define the range for student numbers
     $min = 2001901;
     $max = 9999999; // Adjust this value as needed

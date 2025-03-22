@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title></title>
+    <style>
+      /* -------------------------------------
+                GLOBAL RESETS
+            ------------------------------------- */
+
+      /*All the styling goes here*/
+
+      img {
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100%;
+      }
+
+      body {
+        background-color: #f6f6f6;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%;
+      }
+
+      table td {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 14px;
+        vertical-align: top;
+      }
+
+      /* -------------------------------------
+                BODY & CONTAINER
+            ------------------------------------- */
+
+      .body {
+        background-color: #f6f6f6;
+        width: 100%;
+      }
+
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display: block;
+        margin: 0 auto !important;
+        /* makes it centered */
+        max-width: 1080px;
+        padding: 10px;
+        width: 1080px;
+      }
+
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 780px;
+        padding: 10px;
+      }
+
+      /* -------------------------------------
+                HEADER, FOOTER, MAIN
+            ------------------------------------- */
+      .main {
+        background: #ffffff;
+        border-radius: 3px;
+        width: 100%;
+      }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 20px;
+      }
+
+      .content-block {
+        padding-bottom: 10px;
+        padding-top: 10px;
+      }
+
+      .footer {
+        clear: both;
+        margin-top: 10px;
+        text-align: center;
+        width: 100%;
+      }
+
+      .footer td,
+      .footer p,
+      .footer span,
+      .footer a {
+        color: #999999;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      /* -------------------------------------
+                TYPOGRAPHY
+            ------------------------------------- */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000000;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0;
+        margin-bottom: 30px;
+      }
+
+      h1 {
+        font-size: 35px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: capitalize;
+      }
+
+      p,
+      ul,
+      ol {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+        margin-bottom: 15px;
+      }
+
+      p li,
+      ul li,
+      ol li {
+        list-style-position: inside;
+        margin-left: 5px;
+      }
+
+      a {
+        color: #3498db;
+        text-decoration: underline;
+      }
+
+      /* -------------------------------------
+                BUTTONS
+            ------------------------------------- */
+      .btn {
+        box-sizing: border-box;
+        width: 100%;
+      }
+
+      .btn > tbody > tr > td {
+        padding-bottom: 15px;
+      }
+
+      .btn table {
+        width: auto;
+      }
+
+      .btn table td {
+        background-color: #ffffff;
+        border-radius: 5px;
+        text-align: center;
+      }
+
+      .btn a {
+        background-color: #ffffff;
+        border: solid 1px #508bbc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        color: #3498db;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: bold;
+        margin: 0;
+        padding: 12px 25px;
+        text-decoration: none;
+        text-transform: capitalize;
+      }
+
+      .btn-primary table td {
+        background-color: #508bbc;
+      }
+
+      .btn-primary a {
+        background-color: #508bbc;
+        border-color: #3498db;
+        color: #ffffff;
+        font-size: 1.5rem;
+      }
+
+      /* -------------------------------------
+                OTHER STYLES THAT MIGHT BE USEFUL
+            ------------------------------------- */
+      .last {
+        margin-bottom: 0;
+      }
+
+      .first {
+        margin-top: 0;
+      }
+
+      .align-center {
+        text-align: center;
+      }
+
+      .align-right {
+        text-align: right;
+      }
+
+      .align-left {
+        text-align: left;
+      }
+
+      .clear {
+        clear: both;
+      }
+
+      .mt0 {
+        margin-top: 0;
+      }
+
+      .mb0 {
+        margin-bottom: 0;
+      }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0;
+      }
+
+      .powered-by a {
+        text-decoration: none;
+      }
+
+      hr {
+        border: 0;
+        border-bottom: 1px solid #f6f6f6;
+        margin: 20px 0;
+      }
+
+      h1 {
+        color: #ea383e;
+        font-size: 20px;
+        margin-bottom: 15px;
+        animation: fadeInUp 0.5s ease-out;
+        text-align: left;
+      }
+
+      /* -------------------------------------
+                RESPONSIVE AND MOBILE FRIENDLY STYLES
+            ------------------------------------- */
+      @media only screen and (max-width: 620px) {
+        table.body h1 {
+          font-size: 28px !important;
+          margin-bottom: 10px !important;
+        }
+
+        table.body p,
+        table.body ul,
+        table.body ol,
+        table.body td,
+        table.body span,
+        table.body a {
+          font-size: 16px !important;
+        }
+
+        table.body .wrapper,
+        table.body .article {
+          padding: 10px !important;
+        }
+
+        table.body .content {
+          padding: 0 !important;
+        }
+
+        table.body .container {
+          padding: 0 !important;
+          width: 100% !important;
+        }
+
+        table.body .main {
+          border-left-width: 0 !important;
+          border-radius: 0 !important;
+          border-right-width: 0 !important;
+        }
+
+        table.body .btn table {
+          width: 100% !important;
+        }
+
+        table.body .btn a {
+          width: 100% !important;
+        }
+
+        table.body .img-responsive {
+          height: auto !important;
+          max-width: 100% !important;
+          width: auto !important;
+        }
+      }
+
+      /* -------------------------------------
+                PRESERVE THESE STYLES IN THE HEAD
+            ------------------------------------- */
+      @media all {
+        .ExternalClass {
+          width: 100%;
+        }
+
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%;
+        }
+
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important;
+        }
+
+        #MessageViewBody a {
+          color: inherit;
+          text-decoration: none;
+          font-size: inherit;
+          font-family: inherit;
+          font-weight: inherit;
+          line-height: inherit;
+        }
+
+        .btn-primary table td:hover {
+          background-color: #34495e !important;
+        }
+
+        .btn-primary a:hover {
+          background-color: #34495e !important;
+          border-color: #34495e !important;
+        }
+      }
+      .course-info {
+        background-color: #f1f1f1;
+        padding: 15px;
+        border-left: 4px solid #ea383e;
+        margin: 20px 0;
+        border-radius: 4px;
+      }
+      .cta-button {
+        background-color: #ea383e;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        border-radius: 4px;
+        display: inline-block;
+        text-decoration: none;
+        font-size: 16px;
+      }
+      ul {
+        list-style-position: outside !important; /* Ensures the marker is outside the text */
+        margin-left: 20px; /* Adjusts the indentation */
+      }
+
+      li {
+        list-style-position: outside !important;
+        padding-left: 10px; /* Creates space between the marker and text */
+        text-align: left; /* Ensures proper alignment of the text */
+      }
+    </style>
+  </head>
+
+  <body>
+    <table
+      role="presentation"
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      class="body"
+    >
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+            <!-- START CENTERED WHITE CONTAINER -->
+            <table role="presentation" class="main">
+              <!-- LOGO -->
+              <tr>
+                <td align="center">
+                  <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    width="100%"
+                    style="max-width: 600px"
+                  >
+                    <tr>
+                      <td
+                        align="center"
+                        valign="top"
+                        style="
+                          padding: 40px 30px 20px 20px;
+                          font-size: 20px;
+                          display: flex;
+                        "
+                      >
+                        <img
+                          src="https://lrea.co.uk/images/main-logo-2.png?v=13"
+                          alt="LREA logo"
+                          width="100px"
+                        />
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table
+                    role="presentation"
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                  >
+                    <tr>
+                      <td>
+                        <h1>Welcome to London Real Estate Academy!</h1>
+                        <br />
+                        <p>Hello <strong>{{full_name}}</strong>,</p>
+                        <br />
+                        <p>
+                          Congratulations on successfully confirming your
+                          payment for the London Real Estate Academy online
+                          school! We're thrilled to welcome you to our
+                          community.
+                        </p>
+                        <p>
+                          On behalf of LREA, we are delighted to have you join
+                          our fully online academy. Whether you are just
+                          beginning your real estate education or looking to
+                          enhance your existing knowledge and skills, our
+                          industry-expert instructors and interactive courses
+                          will empower you to achieve your academic and
+                          professional goals.
+                        </p>
+                        <div class="course-info">
+                          <p><strong>Your Login Details:</strong></p>
+                          <ul>
+                            <li><strong>Email:</strong> {{email}}</li>
+                            <li><strong>Password:</strong> {{password}}</li>
+                          </ul>
+                        </div>
+
+                        <div class="course-info">
+                          <p><strong>Getting Started:</strong></p>
+                          <ul>
+                            <li>
+                              <strong
+                                >Access courses by logging into your account
+                                using your email and password:</strong
+                              >
+                              <a href="https://portal.lrea.co.uk/user/access"
+                                >https://portal.lrea.co.uk/user/access</a
+                              >
+                            </li>
+                            <li>
+                              <strong
+                                >Download your Online Digital
+                                Certificate:</strong
+                              >
+                              <a
+                                href="https://portal.lrea.co.uk/student/certificates"
+                                >https://portal.lrea.co.uk/student/certificates</a
+                              >
+                            </li>
+                            <li>
+                              <strong>Download your Student ID:</strong>
+                              <a
+                                href="https://portal.lrea.co.uk/student/identification"
+                                >https://portal.lrea.co.uk/student/identification</a
+                              >
+                            </li>
+                            <li>
+                              <strong>Update your profile:</strong>
+                              <a
+                                href="https://portal.lrea.co.uk/student/settings"
+                                >https://portal.lrea.co.uk/student/settings</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div class="course-info">
+                          <p><strong>Exclusive Benefits Include:</strong></p>
+                          <ul>
+                            <li>
+                              <strong>Annual London Trip:</strong> Attend the
+                              prestigious LREA 2025 conference and network with
+                              industry leaders and professionals from around the
+                              world.
+                            </li>
+                            <li>
+                              <strong
+                                >UK Professional Qualification
+                                Advantage:</strong
+                              >
+                              Leverage the LREA Certificate to enhance your
+                              career prospects, fast-track your professional
+                              qualification, and work in the UK.
+                            </li>
+                            <li>
+                              <strong>Membership Annual Badge:</strong> Proudly
+                              display your affiliation with LREA, UK.
+                            </li>
+                            <li>
+                              <strong>Professional Endorsement Letter:</strong>
+                              Receive letters of recommendation to support your
+                              career growth and development in various fields
+                              and industries.
+                            </li>
+                            <li>
+                              <strong>Invitations to VVIP Events:</strong> Get
+                              exclusive invitations to high-profile events and
+                              conferences, connecting with professionals and
+                              expanding your network in Lagos and globally.
+                            </li>
+                            <li>
+                              <strong>Exclusive Mentorship Program:</strong> Get
+                              paired with experienced industry professionals for
+                              personalized guidance.
+                            </li>
+                            <li>
+                              <strong
+                                >Access to an Exclusive Club in Victoria
+                                Island:</strong
+                              >
+                              Enjoy the privileges of an exclusive elite club,
+                              only accessible to LREA members.
+                            </li>
+                            <li>
+                              <strong>Visa Application Support:</strong> Benefit
+                              from letters of recommendation from LREA for UK
+                              visa or contract applications.
+                            </li>
+                            <li>
+                              <strong>Exclusive Q&A/Interview Sessions:</strong>
+                              Participate in sessions with industry leaders and
+                              trailblazers, gaining valuable insights and
+                              advice.
+                            </li>
+                            <li>
+                              <strong>Yearly Raffle Draws:</strong> Enter for a
+                              chance to win an all-expense-paid trip to the UK,
+                              exclusive to members..and lots more!
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div class="course-info">
+                          <p>
+                            <strong
+                              >To receive your official branded flyer, please
+                              send:</strong
+                            >
+                          </p>
+                          <ul>
+                            <li>
+                              <strong>A professional corporate photo</strong>
+                            </li>
+                            <li>
+                              <strong
+                                >Your official name (not your company
+                                name)</strong
+                              >
+                            </li>
+                          </ul>
+                          <p>
+                            to
+                            <a href="mailto:branding@lrea.co.uk"
+                              >branding@lrea.co.uk</a
+                            >
+                          </p>
+                        </div>
+
+                        <p>
+                          Our dedicated team is committed to ensuring a seamless
+                          learning experience. For assistance, please email
+                          <a href="mailto:info@lrea.co.uk">info@lrea.co.uk</a>.
+                        </p>
+
+                        <p>
+                          <a
+                            href="https://portal.lrea.co.uk/user/access"
+                            class="cta-button"
+                            >Log In Now</a
+                          >
+                        </p>
+
+                        <p>
+                          Best regards,<br />The Management Team, London Real
+                          Estate Academy (LREA)<br />
+                          <a href="https://www.lrea.co.uk">www.lrea.co.uk</a>
+                          <br />
+                          <a href="mailto:info@lrea.co.uk">info@lrea.co.uk</a>
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <!-- END MAIN CONTENT AREA -->
+            </table>
+            <!-- END CENTERED WHITE CONTAINER -->
+
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table
+                role="presentation"
+                border="0"
+                cellpadding="0"
+                cellspacing="0"
+              >
+                <tr>
+                  <td class="content-block powered-by">
+                    &copy; {{current_year}} <a href="#">LREA</a>.
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- END FOOTER -->
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>

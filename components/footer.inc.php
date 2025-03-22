@@ -51,6 +51,7 @@
                     <li><a href="<?php echo $link_root_path; ?>faq" class="text-decoration-none">FAQ</a></li>
                     <li><a href="<?php echo $link_root_path; ?>about-lrea" class="text-decoration-none">About us</a></li>
                     <li><a href="<?php echo $link_root_path; ?>about-lrea/our-mission" class="text-decoration-none">Our Mission and Vision</a></li>
+                    <li><a href="<?php echo $link_root_path; ?>what-we-offer" class="text-decoration-none">What We Offer</a></li>
                     <li><a href="<?php echo $link_root_path; ?>contact-us" class="text-decoration-none">Contact us</a></li>
                     
                     <?php $total_visible_reviews = get_total_visible_reviews(); ?>

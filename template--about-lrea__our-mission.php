@@ -44,7 +44,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h3>Our Mission</h3>
-                            <p>At <?php echo SITE_NAME; ?>, our mission is to empower individuals from diverse backgrounds with accessible, high-quality education and innovative learning experiences. We are dedicated to fostering knowledge, skills, and personal growth, thereby transforming lives and communities. Through our Ed-tech pathway college, we aspire to break down barriers to education, connecting students worldwide to internationally recognized qualifications and a bright future.</p>
+                            <p>Empowering individuals and organizations through education, membership benefits, networking opportunities, and professional development tools, bridging the gap between professionals, industries, and geographies.</p>
 
                             <br />
                             <h3>Our Vision</h3>

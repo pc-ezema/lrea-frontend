@@ -36,85 +36,166 @@
     /* ============ mobile view .end// ============ */
 </style>
 
-<?php 
-    $link_root_default = defined('ROOT_DIR_UK') ? ROOT_DIR_UK : ROOT_DIR;
-    $link_root_path = defined('ROOT_DIR_UK') ? ROOT_DIR_UK.$location_slug : ROOT_DIR.$location_slug;
-    $link_portal_path = defined('ROOT_DIR_PORTAL') ? ROOT_DIR_PORTAL : ROOT_DIR;
+<?php
+$link_root_default = defined('ROOT_DIR_UK') ? ROOT_DIR_UK : ROOT_DIR;
+$link_root_path = defined('ROOT_DIR_UK') ? ROOT_DIR_UK . $location_slug : ROOT_DIR . $location_slug;
+$link_portal_path = defined('ROOT_DIR_PORTAL') ? ROOT_DIR_PORTAL : ROOT_DIR;
 
-    $remove_text_from_cart_icon = true;
+$remove_text_from_cart_icon = true;
 ?>
 
-<?php 
-    // Sanitize POST and GET variables before using in page content
-    if (!function_exists('recursive_user_value_sanitization')) {
-        function recursive_user_value_sanitization( $value ) { 
-            if ( is_array( $value ) ) {
-                foreach ( $value as $index => $item ) {
-                    $value[ $index ] = recursive_user_value_sanitization( $item );
-                }
-            } elseif ( is_object( $value ) ) {
-                $object_vars = get_object_vars( $value );
-                foreach ( $object_vars as $property_name => $property_value ) {
-                    $value->$property_name = recursive_user_value_sanitization( $property_value );
-                }
-            } else {
-                $value = htmlentities($value, ENT_QUOTES);
+<?php
+// Sanitize POST and GET variables before using in page content
+if (!function_exists('recursive_user_value_sanitization')) {
+    function recursive_user_value_sanitization($value)
+    {
+        if (is_array($value)) {
+            foreach ($value as $index => $item) {
+                $value[$index] = recursive_user_value_sanitization($item);
             }
-            
-            return $value;
+        } elseif (is_object($value)) {
+            $object_vars = get_object_vars($value);
+            foreach ($object_vars as $property_name => $property_value) {
+                $value->$property_name = recursive_user_value_sanitization($property_value);
+            }
+        } else {
+            $value = htmlentities($value, ENT_QUOTES);
         }
-    }
 
-    if (count($_POST)) {
-        $_POST = recursive_user_value_sanitization($_POST);
+        return $value;
     }
-    if (count($_GET)) {
-        $_GET = recursive_user_value_sanitization($_GET);
-    }
+}
+
+if (count($_POST)) {
+    $_POST = recursive_user_value_sanitization($_POST);
+}
+if (count($_GET)) {
+    $_GET = recursive_user_value_sanitization($_GET);
+}
 ?>
 
 <?php // Get all countries for dropdown
-    mysqli_select_db($config, $database_config);
-    $query_CtrySwitch = "SELECT mmctry.*  
+mysqli_select_db($config, $database_config);
+$query_CtrySwitch = "SELECT mmctry.*  
                         FROM myip_ms_countries mmctry 
                         ORDER BY mmctry.countryName ASC";
-    $CtrySwitch = mysqli_query($config, $query_CtrySwitch) or die(mysqli_error($config));
-    $row_CtrySwitch = mysqli_fetch_assoc($CtrySwitch);
-    $totalRows_CtrySwitch = mysqli_num_rows($CtrySwitch);
+$CtrySwitch = mysqli_query($config, $query_CtrySwitch) or die(mysqli_error($config));
+$row_CtrySwitch = mysqli_fetch_assoc($CtrySwitch);
+$totalRows_CtrySwitch = mysqli_num_rows($CtrySwitch);
 
-    $country_switch_url = $site_version == 'online' ? 'https://lrea.co.uk/' : $link_root_default;
-    $switch_page_to = $coresite_page_segment_slug_combined ? '/'.$coresite_page_segment_slug_combined : '';
+$country_switch_url = $site_version == 'online' ? 'https://lrea.co.uk/' : $link_root_default;
+$switch_page_to = $coresite_page_segment_slug_combined ? '/' . $coresite_page_segment_slug_combined : '';
 
-    $switchingFinalParams = array();
+$switchingFinalParams = array();
 
-    if ($_COOKIE['a_pub_id']) {
-        $switchingFinalParams[] = 'affPubId='.$_COOKIE['a_pub_id'];
-    }
+if ($_COOKIE['a_pub_id']) {
+    $switchingFinalParams[] = 'affPubId=' . $_COOKIE['a_pub_id'];
+}
 
-    if (isset($_COOKIE['s2cart'])) {
-        $switchingFinalParams[] = 'crtCntntIDs='.$_COOKIE['s2cart'];
-    }
+if (isset($_COOKIE['s2cart'])) {
+    $switchingFinalParams[] = 'crtCntntIDs=' . $_COOKIE['s2cart'];
+}
 
-    if (count($switchingFinalParams)) {
-        $switch_page_to .= '?'.implode("&", $switchingFinalParams);
-    }
+if (count($switchingFinalParams)) {
+    $switch_page_to .= '?' . implode("&", $switchingFinalParams);
+}
 ?>
 
 <?php // Process the cart
-    if (!isset($is_ad_mode) || (isset($is_ad_mode) && !$is_ad_mode)) { // Run the functions if not ad mode
-        $user_cart_info = get_user_cart_info();
-        $no_of_courses_in_cart = $user_cart_info['no_of_courses_in_cart'];
+if (!isset($is_ad_mode) || (isset($is_ad_mode) && !$is_ad_mode)) { // Run the functions if not ad mode
+    $user_cart_info = get_user_cart_info();
+    $no_of_courses_in_cart = $user_cart_info['no_of_courses_in_cart'];
 
-        // Process wishlist details
-        $user_wishlist_info = get_user_wishlist_info();
-        $no_of_courses_in_wishlist = $user_wishlist_info['no_of_courses_in_wishlist'];
-    }
+    // Process wishlist details
+    $user_wishlist_info = get_user_wishlist_info();
+    $no_of_courses_in_wishlist = $user_wishlist_info['no_of_courses_in_wishlist'];
+}
 ?>
 
+<style>
+    .menu-item {
+        position: relative;
+    }
+
+    .menu-item a {
+        color: #000;
+        padding: 15px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .menu-item:hover .mega-menu {
+        display: flex;
+    }
+
+    .mega-menu {
+        display: flex;
+        padding: 30px;
+        z-index: 1000;
+    }
+
+
+    .mega-menu h4 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #1d1d1d;
+        font-weight: bold;
+        height: 15%;
+    }
+
+    .mega-menu p {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.6;
+    }
+
+    .menu-link {
+        display: inline-block;
+        margin-top: 15px;
+        color: #1d1d1d;
+        font-size: 14px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .menu-link:hover {
+        text-decoration: underline;
+    }
+
+    .mega-menu h4,
+    .mega-menu p,
+    .menu-link {
+        transition: color 0.3s ease;
+    }
+
+    .mega-menu h4:hover,
+    .mega-menu p:hover,
+    .menu-link:hover {
+        color: #c10000;
+        /* Matching hover color */
+    }
+
+    .cta-btn {
+        background-color: #ea383e;
+        color: white;
+        text-align: center;
+        padding: 12px 30px;
+        border-radius: 30px;
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+    }
+
+    .cta-btn:hover {
+        background-color: #000;
+        text-decoration: none;
+        color: white;
+    }
+</style>
 <nav class="navbar navbar-expand-lg bg-white main-navbar border-bottom navbar-light fixed-top">
     <div class="container">
         <a class="navbar-brand apply-grow-sm" href="<?php echo $link_root_path; ?>">
-            <img src="<?php echo ROOT_DIR.'images/main-logo-2.png?v='.$fileCacheVersion; ?>" class="img-fluid" width="100" />
+            <img src="<?php echo ROOT_DIR . 'images/main-logo-2.png?v=' . $fileCacheVersion; ?>" class="img-fluid" width="100" />
         </a>
 
         <div class="nav-item ms-auto d-lg-none d-block">
@@ -129,8 +210,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav main-nav-list me-auto mb-2 mb-lg-0" style="gap: 20px;">
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="#menuModal" data-bs-toggle="modal">Course categories</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#membershipModal" data-bs-toggle="modal">Membership</a>
                 </li>
 
                 <li class="nav-item">
@@ -143,7 +227,7 @@
             </ul>
 
             <div class="d-flex align-items-center bg-light text-dark rounded-8 p-1 flex-grow-1 mx-lg-4 mx-0 mb-lg-0 mb-3 pe-lg-3 border">
-                <form action="<?php echo $link_root_default.$location_slug; ?>search" method="GET" class="d-flex w-100 align-items-center">
+                <form action="<?php echo $link_root_default . $location_slug; ?>search" method="GET" class="d-flex w-100 align-items-center">
                     <div class="form-floating w-100">
                         <input type="search" name="k" class="form-control text-dark bg-light rounded-pill border-0" id="floatingSearch" placeholder="What do you want to learn?" required>
                         <label for="floatingSearch">What do you want to learn?</label>
@@ -164,11 +248,12 @@
             </ul>
 
             <div class="d-flex" style="gap: 20px;">
-                <?php if ($sess_user_id > 0 && $_SESSION['user_type'] == 'student') { // If student is logged in ?>
+                <?php if ($sess_user_id > 0 && $_SESSION['user_type'] == 'student') { // If student is logged in 
+                ?>
                     <a class="btn btn-custom-size-2 bg-green text-white btn-custom text-bold w-sm-100" href="<?php echo $link_portal_path; ?>">My profile</a>
                 <?php } elseif (!isset($hide_signin_option) || (isset($hide_signin_option) && !$hide_signin_option)) { ?>
-                    <a class="btn btn-custom-size-2 text-dark btn-custom text-bold w-sm-100" href="<?php echo $link_portal_path."user/access".$url_extend; ?>">Log in</a>
-                    <a class="btn btn-custom-size-2 bg-green text-white btn-custom text-bold w-sm-100" href="<?php echo $link_portal_path."user/register".$url_extend; ?>">Apply now</a>
+                    <a class="btn btn-custom-size-2 text-dark btn-custom text-bold w-sm-100" href="<?php echo $link_portal_path . "user/access" . $url_extend; ?>">Log in</a>
+                    <a class="btn btn-custom-size-2 bg-green text-white btn-custom text-bold w-sm-100" href="<?php echo $link_portal_path . "user/register" . $url_extend; ?>">Apply now</a>
                 <?php } ?>
             </div>
         </div>
@@ -282,12 +367,54 @@
                         <div class="col-lg-12">
                             <div class="mb-3">
                                 <ul class="list-unstyled col-count-country-2 country-list-view">
-                                    <?php do { ?> 
-                                        <li><a href="<?php echo $country_switch_url.$row_CtrySwitch['url_name'].$switch_page_to; ?>" class="text-decoration-none"><?php echo $row_CtrySwitch['countryName']; ?></a></li>
-                                    <?php } while($row_CtrySwitch = mysqli_fetch_assoc($CtrySwitch)); ?> 
+                                    <?php do { ?>
+                                        <li><a href="<?php echo $country_switch_url . $row_CtrySwitch['url_name'] . $switch_page_to; ?>" class="text-decoration-none"><?php echo $row_CtrySwitch['countryName']; ?></a></li>
+                                    <?php } while ($row_CtrySwitch = mysqli_fetch_assoc($CtrySwitch)); ?>
                                 </ul>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="membershipModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content border-0 rounded-0">
+            <div class="modal-header border-bottom-0">
+                <h1 class="modal-title fs-5" id="menuModalLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-3">
+                <div class="mega-menu row">
+                    <div class="col mb-5">
+                        <h4><a href="<?php echo $link_root_path; ?>landing" style="color: #c10000; text-decoration: none;">Why join us?</a></h4>
+                        <hr>
+                        <p>At London Real Estate Academy (LREA), becoming a member means gaining access to exclusive opportunities, professional resources, and personalized support designed to enhance your personal, career, and educational development.</p>
+                    </div>
+                    <div class="col mb-5">
+                        <h4><a href="<?php echo $link_root_path; ?>landing" style="color: #c10000; text-decoration: none;">LREA Top Management Membership</a></h4>
+                        <hr>
+                        <p>LREA's Top Management Membership is designed for visionary leaders like you. Leverage our expertise, expand your network, and gain valuable perspectives to inform strategic decision-making.</p>
+                        <p>Join LREA's elite community of top management and gain access to bespoke services, expert guidance, and innovative solutions to drive organizational success</p>
+                    </div>
+                    <div class="col mb-5">
+                        <h4><a href="<?php echo $link_root_path; ?>landing" style="color: #c10000; text-decoration: none;">LREA Professional Membership</a></h4>
+                        <hr>
+                        <p>Designed for emerging leaders and seasoned business professionals. This fosters a unique opportunity for continued growth and connection. It offers a platform to stay informed, engaged, and connected to our thriving professional network.</p>
+                    </div>
+                    <div class="col mb-5">
+                        <h4><a href="<?php echo $link_root_path; ?>landing" style="color: #c10000; text-decoration: none;">LREA Student Membership:</a></h4>
+                        <hr>
+                        <p>Bridge the Gap to Leadership. Connect with experienced professionals, learn from their experiences, and develop essential skills for a successful career. Start early by paving your Path to Excellence. Tap into the collective knowledge of industry experts, gain valuable perspectives, and develop your leadership potential. Join our dynamic community today.</p>
+                    </div>
+                    <div class="col mb-5">
+                        <h4><a href="<?php echo $link_root_path; ?>landing" style="color: #c10000; text-decoration: none;">Join Now</a></h4>
+                        <hr>
+                        <p>Sign up now to become part of our dynamic community, featuring access to exclusive services, resources, and hubs tailored to support your ambitions.</p>
+                        <a href="<?php echo $link_root_path; ?>payment" class="cta-btn">Sign up now</a>
                     </div>
                 </div>
             </div>

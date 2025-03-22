@@ -94,11 +94,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $row_LastInfo = mysqli_fetch_assoc($LastInfo);
             $totalRows_LastInfo = mysqli_num_rows($LastInfo);
             if ($row_LastInfo) {
-                
+
                 // Fetch the prog_date from programme_dates table
                 $query_ProgDate = "SELECT entry_id, start_date, end_date  
                     FROM programme_dates 
-                    WHERE programme_id = ".sql_int($row_LastInfo['programme_id'])." 
+                    WHERE programme_id = " . sql_int($row_LastInfo['programme_id']) . " 
                     LIMIT 1";
                 $ProgDateResult = mysqli_query($config, $query_ProgDate) or die(mysqli_error($config));
                 $row_ProgDate = mysqli_fetch_assoc($ProgDateResult);
@@ -107,14 +107,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $prog_date = sql_int($row_ProgDate['entry_id']);
                     $start_date = $row_ProgDate['start_date'];
                     $end_date = $row_ProgDate['end_date'];
-                
+
                     // Create DateTime objects
                     $startDateTime = new DateTime($start_date);
                     $endDateTime = new DateTime($end_date);
-                
+
                     // Calculate the duration
                     $duration = $startDateTime->diff($endDateTime);
-                    
+
                     // Generate new start date and end date starting from now
                     $currentDate = new DateTime();
                     $newStartDate = $currentDate->format('Y-m-d');
@@ -159,11 +159,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         0,  /* source */
                         0,  /* marketer_id */
                         " . sql_int($row_LastInfo['programme_id']) . ",  /* prog_interest */
-                        ".$prog_date.",  /* prog_date */
+                        " . $prog_date . ",  /* prog_date */
                         21,  /* stage */
                         '" . sql_string($time_now) . "',  /* entry_date */
-                        '".$newStartDate."', /* sess_start_date */
-                        '".$newEndDate."', /* sess_end_date */
+                        '" . $newStartDate . "', /* sess_start_date */
+                        '" . $newEndDate . "', /* sess_end_date */
                         95,  /* study_center */
                         1,  /* branch */
                         '" . sql_string($_POST['company']) . "',  /* emp_company */
@@ -198,7 +198,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $password = create_password();
 
                             mysqli_select_db($config, $database_config);
-                            $insertSQL = "INSERT INTO users_students (username, password, default_password, email, status, last_enrol_id, modified_by, modified_date) 
+                            $insertSQL = "INSERT INTO users_students (username, password, default_password, email, status, last_enrol_id, modified_by, adsStatus, modified_date) 
                                             VALUES (
                                                 '" . sql_string($username) . "', 
                                                 '" . sql_string(sha1($password)) . "', 
@@ -206,7 +206,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 '" . sql_string($_POST['email']) . "', 
                                                 'active',
                                                 '" . sql_int($last_enrol_id) . "', 
-                                                1, 
+                                                1,
+                                                0, 
                                                 '" . sql_string(date("Y-m-d H:i:s")) . "'
                                             )";
                             $Result1 = mysqli_query($config, $insertSQL) or die(mysqli_error($config));
@@ -235,13 +236,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         welcome_triggered,
                                         modified_date
                                     ) VALUES (
-                                        ".sql_int($row_NuLogin['login_id']).",
-                                        ".sql_int($last_enrol_id).",
+                                        " . sql_int($row_NuLogin['login_id']) . ",
+                                        " . sql_int($last_enrol_id) . ",
                                         '1',
-                                        '".sql_string($time_now)."'
+                                        '" . sql_string($time_now) . "'
                                     )";
                                     mysqli_query($config, $insertStudentProspectSQL) or die(mysqli_error($config));
-                                    
+
                                     record_log('prospect', $sess_user_id, $row_NuLogin['login_id'], 'Created student login record');
                                 }
                             }
@@ -276,23 +277,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         foreach ($placeholders as $placeholder => $value) {
                             $template = str_replace($placeholder, $value, $template);
-                        }            
+                        }
 
                         // Send the email using PHPMailer
                         $mail = new PHPMailer();
                         $mail->IsSMTP();
                         $mail->SMTPAuth = true;
-                        // $mail->Host = 'mail.lrea.co.uk';
-                        // $mail->Port = 465;
-                        // $mail->SMTPSecure = 'SSL';
-                        // $mail->Username = 'noreply@lrea.co.uk';
-                        // $mail->Password = '!Pg0k%tPZhvS';
+                        $mail->Host = 'mail.lrea.co.uk';
+                        $mail->Port = 465;
+                        $mail->SMTPSecure = 'ssl';
+                        $mail->Username = 'no-reply@lrea.co.uk';
+                        $mail->Password = 'SCqc2B4Vq({B';
 
-                        $mail->Host = 'sandbox.smtp.mailtrap.io';
-                        $mail->Port = 2525;
-                        $mail->SMTPSecure = 'TLS';
-                        $mail->Username = '011a587122008d';
-                        $mail->Password = '65b15e1a2f0e29';
+                        // $mail->Host = 'sandbox.smtp.mailtrap.io';
+                        // $mail->Port = 2525;
+                        // $mail->SMTPSecure = 'TLS';
+                        // $mail->Username = '011a587122008d';
+                        // $mail->Password = '65b15e1a2f0e29';
 
                         $mail->SMTPOptions = array(
                             'ssl' => array(
@@ -303,18 +304,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         );
 
                         $mail->IsHTML(true);
-                        $mail->SetFrom('noreply@lrea.co.uk', 'LREA');
+                        $mail->SetFrom('no-reply@lrea.co.uk', 'LREA');
                         $mail->AddReplyTo('info@lrea.co.uk', 'LREA');
                         $mail->Subject = $subject;
                         $mail->MsgHTML($template);
-                        $mail->AltBody = $template;  // Plain text version for non-HTML email clients
+                        $mail->AltBody = strip_tags($template);  // Plain text version for non-HTML email clients
 
                         $mail->AddAddress($_SESSION['student_login_username']);  // Send to the registered email
+
+                        // Debugging
+                        $mail->SMTPDebug = 2;  // Enable debugging (optional)
+                        $mail->Debugoutput = 'html';  // Debug output in HTML
 
                         // Attempt to send the email
                         if (!$mail->Send()) {
                             // Handle email send failure (optional)
-                            error_log("Failed to send registration email to " . $_SESSION['student_login_username']);
+                            error_log("Failed to send registration email to " . $_SESSION['student_login_username']. "Mailer Error: " . $mail->ErrorInfo);
                         }
                     } else {
                         $_SESSION['userfeedback'] = "Failed to register. Please try again later.";
@@ -339,7 +344,63 @@ require_once('components/doctype.inc.php');
 ?>
 
 <style>
+    /* Add some padding and margin for better readability */
+    .container {
+        padding: 20px;
+    }
 
+    .form-container {
+        max-width: 700px;
+        margin: 40px auto;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background-image: linear-gradient(to right, #ea383e, #56d5c2);
+        color: white;
+        border-radius: 15px 15px 0 0;
+        padding: 20px;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .btn {
+        background-color: #ea383e;
+        border: none;
+        transition: background-color 0.3s ease;
+        color: #fff !important;
+    }
+
+    .btn:hover {
+        background-color: #000;
+        color: #fff !important;
+    }
+
+    .form-control:focus {
+        border-color: #ea383e;
+        box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+    }
+    .spinner-border {
+        display: none;
+    }
+    .spinner-text {
+        display: none;
+    }
+    .button-loading .button-text {
+        display: none;
+    }
+    .button-loading .spinner-border,
+    .button-loading .spinner-text {
+        display: inline-block;
+    }
+    .spinner-text {
+        margin-left: 10px;
+    }
 </style>
 
 <?php include_once('components/end-of-head.inc.php'); ?>
@@ -375,7 +436,7 @@ require_once('components/doctype.inc.php');
                             </div>
                         <?php endif; ?>
 
-                        <form action="" method="POST">
+                        <form action="" method="POST" id="registrationForm">
                             <!-- First Name -->
                             <div class="mb-3">
                                 <label for="firstName" class="form-label"><i class="fas fa-user"></i> First Name</label>
@@ -437,7 +498,12 @@ require_once('components/doctype.inc.php');
                             </div>
                             <!-- Submit Button -->
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-paper-plane"></i> Register</button>
+                                <button type="submit" class="btn btn-lg" id="submitButton">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span class="button-text">Register</span>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    <span class="spinner-text">Please wait...</span>
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -453,47 +519,13 @@ require_once('components/doctype.inc.php');
     <?php require_once('components/javascripts.inc.php'); ?>
     <?php include_once('components/end-of-body.inc.php'); ?>
 
-    <style>
-        /* Add some padding and margin for better readability */
-        .container {
-            padding: 20px;
-        }
-
-        .form-container {
-            max-width: 700px;
-            margin: 40px auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-header {
-            background-image: linear-gradient(to right, #ea383e, #56d5c2);
-            color: white;
-            border-radius: 15px 15px 0 0;
-            padding: 20px;
-        }
-
-        .form-label {
-            font-weight: bold;
-        }
-
-        .btn-primary {
-            background-color: #ea383e;
-            border: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background-color: #ea383ecf;
-        }
-
-        .form-control:focus {
-            border-color: #ea383e;
-            box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
-        }
-    </style>
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            var button = document.getElementById('submitButton');
+            button.classList.add('button-loading');
+            button.disabled = true;
+        });
+    </script>
 </body>
 
 </html>
