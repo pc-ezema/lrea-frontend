@@ -1,13 +1,14 @@
-<?php 
-  $link_root_default = defined('ROOT_DIR_UK') ? ROOT_DIR_UK : ROOT_DIR;
-  $link_root_path = defined('ROOT_DIR_UK') ? ROOT_DIR_UK.$location_slug : ROOT_DIR.$location_slug;
-  $link_portal_path = defined('ROOT_DIR_PORTAL') ? ROOT_DIR_PORTAL : ROOT_DIR;
+<?php
+$link_root_default = defined('ROOT_DIR_UK') ? ROOT_DIR_UK : ROOT_DIR;
+$link_root_path = defined('ROOT_DIR_UK') ? ROOT_DIR_UK . $location_slug : ROOT_DIR . $location_slug;
+$link_portal_path = defined('ROOT_DIR_PORTAL') ? ROOT_DIR_PORTAL : ROOT_DIR;
 ?>
+
 
 <a href="<?php echo $link_root_path; ?>cart" class="float d-flex justify-content-center align-items-center">
     <div class="position-relative">
         <div class="text-white"><i data-feather="shopping-cart"></i></div>
-        <div class="in-cart-indicator bg-green cart-badge" <?php if ($no_of_courses_in_cart == 0 ) echo 'style="display: none;"'; ?>>
+        <div class="in-cart-indicator bg-green cart-badge" <?php if ($no_of_courses_in_cart == 0) echo 'style="display: none;"'; ?>>
             <span class="count-wish count-wish-2"><?php echo $no_of_courses_in_cart; ?></span>
         </div>
     </div>
@@ -17,7 +18,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-7">
-                <img src="<?php echo ROOT_DIR.'images/main-logo.png?v='.$fileCacheVersion; ?>" class="img-fluid" width="200" />
+                <img src="<?php echo ROOT_DIR . 'images/main-logo.png?v=' . $fileCacheVersion; ?>" class="img-fluid" width="200" />
             </div>
         </div>
 
@@ -53,7 +54,7 @@
                     <li><a href="<?php echo $link_root_path; ?>about-lrea/our-mission" class="text-decoration-none">Our Mission and Vision</a></li>
                     <li><a href="<?php echo $link_root_path; ?>what-we-offer" class="text-decoration-none">What We Offer</a></li>
                     <li><a href="<?php echo $link_root_path; ?>contact-us" class="text-decoration-none">Contact us</a></li>
-                    
+
                     <?php $total_visible_reviews = get_total_visible_reviews(); ?>
                     <?php if ($total_visible_reviews > $least_expected_total_reviews) { ?>
                         <li><a href="<?php echo $link_root_path; ?>reviews" class="text-decoration-none">Reviews</a></li>
@@ -102,12 +103,26 @@
     </div>
 </footer>
 
-<?php 
-    $end_timing = microtime(TRUE);
-    echo "	<!-- Page processed in ".round($end_timing - $start_timing, 8)." secs. ".$memcache_availability." -->";
+<?php
+$end_timing = microtime(TRUE);
+echo "	<!-- Page processed in " . round($end_timing - $start_timing, 8) . " secs. " . $memcache_availability . " -->";
 
-    if (isset($_SESSION['images_for_cross_domain'])) {
-        echo $_SESSION['images_for_cross_domain'];
-        unset($_SESSION['images_for_cross_domain']);
-    }
+if (isset($_SESSION['images_for_cross_domain'])) {
+    echo $_SESSION['images_for_cross_domain'];
+    unset($_SESSION['images_for_cross_domain']);
+}
 ?>
+
+<!-- Optional JS to auto-detect logo width -->
+<script>
+    (function setTailWidth() {
+        function update() {
+            const tail = document.querySelector('.tail-logo');
+            if (!tail) return;
+            const rect = tail.getBoundingClientRect();
+            document.documentElement.style.setProperty('--tail-width', rect.width + 'px');
+        }
+        window.addEventListener('load', update);
+        window.addEventListener('resize', update);
+    })();
+</script>

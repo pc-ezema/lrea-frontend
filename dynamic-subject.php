@@ -150,7 +150,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="text-start mb-5">
-                            <h1 class="text-bold text-white ft-custom-hero mb-4">Explore <?php echo $row_DisOption['option_value']; ?> Courses.</h1>
+                            <h1 class="text-bold text-white ft-custom-hero mb-4">Explore Courses in <?php echo $row_DisOption['option_value']; ?></h1>
                         </div>
 
                         <?php if ($totalRows_SubSubjects || $sub_subject_mode_is_enabled) { ?>

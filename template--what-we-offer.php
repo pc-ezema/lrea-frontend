@@ -103,7 +103,7 @@ require_once('components/doctype.inc.php');
                     <div class="col-lg-6 mb-lg-0 mb-3">
                         <div class="">
                             <h1 class="text-bold text-white ft-custom-hero mb-2">What We Offer</h1>
-                            <p class="text-white">Unlock prestigious British diplomas and exclusive membership benefits that propel your professional journey forward.</p>
+                            <p class="text-white">Gain access to prestigious British diplomas and exclusive membership benefits that accelerate your professional growth.</p>
                         </div>
                     </div>
                 </div>
@@ -111,65 +111,66 @@ require_once('components/doctype.inc.php');
         </div>
         <div class="container py-5">
             <!-- What We Offer Section -->
-            <h2 class="section-title text-center">As a private for-profit business school, LREA provides:</h4>
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <!-- Offer Details -->
-                    <ul class="offer-list">
-                        <li><i class="bi bi-check-circle-fill"></i>OFQUAL regulated diploma degrees (levels 3-7) via awarding bodies, leading to degrees from top UK Universities.</li>
-                        <li><i class="bi bi-check-circle-fill"></i>Access to outstanding British Diplomas at nearly half the university fees.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Exclusive Membership Benefits Section -->
-            <div class="row mt-5">
-                <div class="col-md-12 mb-3 text-center">
-                    <h3 class="section-title">Exclusive Membership Benefits</h3>
-                </div>
-
-                <!-- Cards for Exclusive Benefits -->
+            <h2 class="section-title text-center">As a private, for-profit business school, <?php echo SITE_NAME; ?> delivers high-quality, career-focused education designed to equip professionals with globally recognized qualifications.</h4>
+            <h2 class="section-title text-center">At <?php echo SITE_NAME; ?>, we provide:</h2>
                 <div class="row justify-content-center">
-                    <div class="col-md-4">
-                        <div class="card p-4">
-                            <h5 class="card-title">Global networking opportunities</h5>
-                        </div>
+                    <div class="col-md-8">
+                        <!-- Offer Details -->
+                        <ul class="offer-list">
+                            <li><i class="bi bi-check-circle-fill"></i>OFQUAL-regulated diploma degrees (Levels 3-7) through top awarding bodies—your pathway to degrees from leading UK universities.</li>
+                            <li><i class="bi bi-check-circle-fill"></i>World-class British diplomas at nearly half the cost of traditional university fees, making high-quality education more accessible than ever.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Exclusive Membership Benefits Section -->
+                <div class="row mt-5">
+                    <div class="col-md-12 mb-3 text-center">
+                        <h3 class="section-title">Exclusive Membership Benefits</h3>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="card p-4">
-                            <h5 class="card-title">Professional development resources</h5>
+                    <!-- Cards for Exclusive Benefits -->
+                    <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <div class="card p-4">
+                                <h5 class="card-title">Global networking opportunities</h5>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-4">
-                        <div class="card p-4">
-                            <h5 class="card-title">Exclusive events and conferences</h5>
+                        <div class="col-md-4">
+                            <div class="card p-4">
+                                <h5 class="card-title">Professional development resources</h5>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-4">
-                        <div class="card p-4">
-                            <h5 class="card-title">Personalized mentorship programs</h5>
+                        <div class="col-md-4">
+                            <div class="card p-4">
+                                <h5 class="card-title">Exclusive events and conferences</h5>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-4">
-                        <div class="card p-4">
-                            <h5 class="card-title">Industry insights and updates</h5>
+                        <div class="col-md-4">
+                            <div class="card p-4">
+                                <h5 class="card-title">Personalized mentorship programs</h5>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card p-4">
+                                <h5 class="card-title">Industry insights and updates</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- CTA Section -->
-            <div class="row mt-5 text-center">
-                <div class="col-md-12">
-                    <h3 class="section-title">Join Us Today</h3>
-                    <p>Explore how LREA can help you advance in your career. Become a part of our community and unlock your potential today.</p>
-                    <a href="<?php echo $link_root_path; ?>landing" class="cta-btn">Learn More & Apply</a>
+                <!-- CTA Section -->
+                <div class="row mt-5 text-center">
+                    <div class="col-md-12">
+                        <h3 class="section-title">Join Us Today</h3>
+                        <p>Explore how LREA can help you advance in your career. Become a part of our community and unlock your potential today.</p>
+                        <a href="<?php echo $link_root_path; ?>landing" class="cta-btn">Learn More & Apply</a>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
     <!-- /Main Content -->

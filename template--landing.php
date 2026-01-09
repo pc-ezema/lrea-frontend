@@ -531,60 +531,9 @@ require_once('components/doctype.inc.php');
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     }
 
-    /* PARTICLES */
-    .particles {
-        position: absolute;
-        display: flex;
-        width: 100%;
-        padding: 0 10px;
-        z-index: 1;
-        /* Ensure particles go behind other sections */
-        /* top: 0; */
-        bottom: 1000px;
-        /* Position particles correctly */
-    }
-
-    .particles li {
-        position: relative;
-        bottom: 30px;
-        width: 30px;
-        height: 30px;
-        background: #7edd90;
-        box-shadow: 0 0 0 10px #7edd9044, 0 0 50px #7edd90, -100px 0 #475c9a99,
-            100px 0 #475c9a99;
-        margin: 0 4px;
-        border-radius: 50%;
-        animation: particles-animation calc(190s / var(--i)) ease infinite;
-    }
-
-    .particles li:nth-child(2n) {
-        background: #475c9a;
-        box-shadow: 0 0 0 10px #475c9a44, 0 0 50px #475c9a, -100px 0 #7edd9099,
-            100px 0 #7edd9099;
-    }
-
-    .particles li:nth-child(3n) {
-        background: #9a4772;
-        box-shadow: 0 0 0 10px #9a477244, 0 0 50px #9a4772, -100px 0 #7edd9099,
-            100px 0 #7edd9099;
-    }
-
-    @keyframes particles-animation {
-        0% {
-            transform: translateY(120vh) scale(0) rotate(180deg);
-        }
-
-        20% {
-            transform: translateY(100vh) scale(1) rotate(0deg);
-        }
-
-        100% {
-            transform: translateY(-120vh) scale(0.5) rotate(360deg);
-        }
-    }
-
     strong {
         font-family: "SoDoSans Bold", Arial, Helvetica, sans-serif;
+        margin-right: 15px;
     }
 </style>
 
@@ -600,173 +549,69 @@ require_once('components/doctype.inc.php');
     <?php require_once('components/header.inc.php'); ?>
 
     <div class="main-content">
-        <!-- <ul class="particles">
-            <li style="--i: 11"></li>
-            <li style="--i: 12"></li>
-            <li style="--i: 13"></li>
-            <li style="--i: 14"></li>
-            <li style="--i: 15"></li>
-            <li style="--i: 16"></li>
-            <li style="--i: 17"></li>
-            <li style="--i: 18"></li>
-            <li style="--i: 19"></li>
-            <li style="--i: 20"></li>
-            <li style="--i: 21"></li>
-        </ul> -->
         <div class="container mt-5">
-            <div class="banner">
-                <div class="banner-content">
-                    <h1>LREA Membership Benefits</h1>
-                    <p>By becoming a member, you'll not only receive your certificate but also gain access to a world of benefits</p>
-                    <?php if (!empty($form_errors)): ?>
-                        <div class="alert alert-danger">
-                            <ul>
-                                <?php foreach ($form_errors as $error): ?>
-                                    <li><?php echo $error; ?></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
-                    <?php elseif (!empty($success_message)): ?>
-                        <div class="alert alert-success">
-                            <?php echo $success_message; ?>
-                        </div>
-                    <?php endif; ?>
-                    <div class="fee-info">
-                        <h2>Limited Time Offer!</h2>
-                        <p>
-                            And the best part? You can become a member at a discounted fee of
-                            <strong>N300,000</strong> only! 🎉
-                            <br />
-                            Offers end at 11:59 pm on December 31st. ⏰
-                        </p>
-                        <!-- Add id="paymentForm" to the form -->
-                        <!-- <form id="paymentForm" action="" method="POST">
-                            <input type="hidden" id="email" value="<?php echo !empty($_GET['email']) ? htmlspecialchars($_GET['email']) : ''; ?>" required>
-                            <input type="hidden" id="public_key" value="<?php echo $paystack_public_key; ?>">
-                            <input type="hidden" id="reference" name="reference">
-
-                            <button type="button" id="paymentButton" class="btn-payment" onclick="payWithPaystack()">
-                                <span id="paymentButtonText"><i class="fas fa-paper-plane"></i> Proceed To Payment Of ₦300,000</span>
-                                <span id="loadingSpinner" style="display: none;"><i class="fas fa-spinner fa-spin"></i> Processing...</span>
-                            </button>
-                        </form> -->
-                        <a href="<?php echo $link_root_path; ?>payment" class="btn-payment text-decoration-none">Proceed to Payment</a>
-
-                    </div>
-                </div>
-            </div>
             <div class="benefits-section">
-                <h2>LREA Membership Benefits</h2>
-                <p>As a member, you will enjoy the following exclusive advantages:</p>
+                <h2>Unlock Exclusive Benefits with LREA Membership</h2>
+                <p>From personal growth to professional advancement, networking, and beyond, an LREA membership offers a comprehensive range of advantages designed to empower you at every stage of your journey!</p>
+                <p>Here’s what you stand to gain:</p>
                 <ul class="benefits-list">
                     <li>
                         <i class="fas fa-user-plus"></i>
                         <div class="content">
-                            <h5>Personal Development Benefits:</h5>
+                            <h5>Personal Development</h5>
                             <ul>
-                                <li><strong>Exclusive Mentorship Programs:</strong> Gain personalized guidance from seasoned industry professionals who provide one-on-one mentorship to help you achieve your goals.</li>
-                                <li><strong>Tailored Career Pathways:</strong> Receive expert advice and support on charting the course of your career with our range of educational offerings and industry connections.</li>
-                                <li><strong>Personal Growth Resources:</strong> Access a library of resources focused on personal development, including books, articles, and online courses.</li>
+                                <li><strong>Mentorship Programs:</strong> One-on-one guidance from industry experts to help you achieve your goals.</li>
+                                <li><strong>Career Counseling:</strong> Tailored advice and educational resources to map out your career journey.</li>
+                                <li><strong>Growth Resources:</strong> Access to a library of books, articles, and online courses for personal development.</li>
                             </ul>
                         </div>
                     </li>
                     <li>
                         <i class="fas fa-briefcase"></i>
                         <div class="content">
-                            <h5>Career Development Benefits:</h5>
+                            <h5>Career Development</h5>
                             <ul>
-                                <li><strong>UK Professional Qualification and Certification Advantage:</strong> Boost your credentials and career advantage with our internationally recognized LREA certificates, fast-track your professional qualification, and open doors for opportunities in the UK and beyond.</li>
-                                <li><strong>Professional Endorsement Letter:</strong> Elevate your career by leveraging official letters of recommendation to support your growth and credibility in your industry.</li>
-                                <li><strong>Visa Application Support:</strong> Increase your chances of success with LREA endorsement letters for visa and contract applications.</li>
-                                <li><strong>Career Counseling:</strong> One-on-one career counseling sessions to help you make informed career decisions.</li>
+                                <li><strong>Professional Qualifications:</strong> Earn internationally recognized LREA certifications to fast-track your career.</li>
+                                <li><strong>Professional Endorsement:</strong> Receive official recommendation letters to boost your credibility and display your LREA affiliation with a membership badge.</li>
+                                <li><strong>Visa Support:</strong> Increase your chances of success with LREA endorsement for visa and contract applications.</li>
                             </ul>
                         </div>
                     </li>
                     <li>
                         <i class="fas fa-network-wired"></i>
                         <div class="content">
-                            <h5>Networking Benefits:</h5>
+                            <h5>Networking Opportunities</h5>
                             <ul>
-                                <li><strong>Global Networking Opportunities:</strong> Connect with a diverse membership base of professionals from various sectors and industries, fostering collaboration and partnership.</li>
-                                <li><strong>VVIP Event Invitations:</strong> Attend high-profile events in Lagos, London, and beyond, where you can engage with industry leaders, innovators, and peers.</li>
-                                <li><strong>Opportunities for Partnerships:</strong> Unlock collaborations with fellow professionals and access potential business opportunities within our global network.</li>
-                                <li><strong>Access to Exclusive Club:</strong> Enjoy access to a prestigious club in Victoria Island for elite networking and collaboration opportunities with other LREA members.</li>
-                                <li><strong>Annual London Trip:</strong> Attend the prestigious LREA conference, connect with global professionals, and expand your network while gaining insights from top industry leaders worldwide.</li>
+                                <li><strong>Global Connections:</strong> Collaborate and network with professionals across industries and sectors.</li>
+                                <li><strong>VVIP Events:</strong> Attend high-profile conferences and events in Lagos, London, and beyond to engage with industry leaders</li>
+                                <li><strong>Partnerships:</strong> Unlock business opportunities within our global network.</li>
                             </ul>
                         </div>
                     </li>
                     <li>
                         <i class="fas fa-hands-helping"></i>
                         <div class="content">
-                            <h5>Support Benefits:</h5>
+                            <h5>Training & Education</h5>
                             <ul>
-                                <li><strong>Yearly Raffle Draws:</strong> Enter for a chance to win an all-expense-paid trip to the UK, exclusive for our members.</li>
-                                <li><strong>Visa Application Assistance:</strong> Enhance your application for UK visas or work contracts with our official support.</li>
-                                <li><strong>Personalized Support:</strong> Tailored support to help you achieve your professional goals.</li>
-                                <li><strong>Member Assistance Programs:</strong> Access various support programs to assist you in your professional journey.</li>
-                                <li><strong>Community Support:</strong> Join a supportive community of like-minded professionals.</li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-book-open"></i>
-                        <div class="content">
-                            <h5>Learning Benefits:</h5>
-                            <ul>
-                                <li><strong>Personalized Mentorship Programs:</strong> Benefit from one-on-one mentorship tailored to your professional needs.</li>
-                                <li><strong>Access to Educational Resources:</strong> Comprehensive access to a wide range of educational materials, including online courses, webinars, and workshops.</li>
-                                <li><strong>Invitations to Q&A Sessions with Industry Leaders:</strong> Gain insights and advice directly from experts in the field through exclusive interview sessions and panel discussions.</li>
-                                <li><strong>Interdisciplinary Collaboration:</strong> Opportunities to collaborate with professionals from various sectors and disciplines.</li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-star"></i>
-                        <div class="content">
-                            <h5>Additional Benefits:</h5>
-                            <ul>
-                                <li><strong>Membership Badge:</strong> Proudly display your LREA affiliation with an official annual badge.</li>
-                                <li><strong>Exclusive Member Discounts:</strong> Enjoy discounts on various professional development courses and events.</li>
-                                <li><strong>Diverse Membership Base:</strong> Connect with professionals across various industries—LREA membership is open to all sectors.</li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-graduation-cap"></i>
-                        <div class="content">
-                            <h5>Training and Education:</h5>
-                            <p style="text-align: left;">We offer internationally recognized diplomas and executive education courses tailored to your needs. Whether you’re starting out or looking to advance your career, our educational offerings are designed to empower you with the knowledge and skills needed to thrive.</p>
-                            <ul>
-                                <li><strong>Affordable Pathway Programs:</strong> Access high-quality, OFQUAL-regulated diplomas that can lead to degrees from top UK universities.</li>
-                                <li><strong>Diverse Learning Opportunities:</strong> Explore flexible programs that are accessible from anywhere, catering to various sectors and industries.</li>
-                                <li><strong>Continuous Learning:</strong> Stay updated with exclusive Q&A sessions, interview panels, and webinars featuring industry experts.</li>
-                            </ul>
-                            <a href="<?php echo ROOT_DIR.$location_slug; ?>category/short-courses" class="btn-payment text-decoration-none">Explore Courses</a> <!-- This link navigates to the Courses section -->
-                        </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-tools"></i>
-                        <div class="content">
-                            <h5>Resources:</h5>
-                            <p style="text-align: left;">Our comprehensive resources provide the foundation for your personal and professional growth. As a member, you will have exclusive access to tools that can shape your career and open doors to new opportunities.</p>
-                            <ul>
-                                <li><strong>Industry Insights and Updates:</strong> Stay ahead with the latest trends and developments in your field through regular newsletters and market analysis.</li>
-                                <li><strong>Professional Endorsement:</strong> Receive letters of recommendation for career advancement, visa applications, or contract bids.</li>
-                                <li><strong>Exclusive Mailing List:</strong> Get updates from industry leaders that can keep you motivated and informed.</li>
+                                <li><strong>OFQUAL-Regulated Diplomas:</strong> Earn qualifications that can lead to degrees from top UK universities.</li>
+                                <li><strong>Flexible Learning:</strong> Access programs from anywhere, tailored to various industries.</li>
+                                <li><strong>Continuous Growth:</strong> Stay updated with webinars, Q&A sessions, and expert panels, and get exclusive discounts on professional development courses and events.</li>
                             </ul>
                         </div>
                     </li>
                     <li>
                         <i class="fas fa-handshake"></i>
                         <div class="content">
-                            <strong>At LREA, we are committed to your success. We offer everything you need to enhance your career and personal growth. Joining LREA means becoming part of a global community dedicated to excellence, innovation, and collaboration. Start your journey with us today and unlock your full potential!</strong>
+                            <strong>LREA is your gateway to a global community of excellence, innovation, and collaboration. With tools, resources, and connections designed to unlock your potential, we’re committed to your success. Start your journey with us today!</strong>
                         </div>
                     </li>
                 </ul>
+                <div>
+                    <a href="<?php echo $link_root_path; ?>payment" class="cta-btn">Become a Member</a>     
+                </div>
             </div>
         </div>
     </div>
-
     <!-- /Main Content -->
 
     <?php require_once('components/footer.inc.php'); ?>

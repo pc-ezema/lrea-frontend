@@ -208,24 +208,6 @@ if (!isset($is_ad_mode) || (isset($is_ad_mode) && !$is_ad_mode)) { // Run the fu
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav main-nav-list me-auto mb-2 mb-lg-0" style="gap: 20px;">
-
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="#menuModal" data-bs-toggle="modal">Course categories</a>
-                </li> -->
-                <li class="nav-item">
-                    <a class="nav-link" href="#membershipModal" data-bs-toggle="modal">Membership</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $link_root_path; ?>subscriptions">Subscriptions</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $link_root_path; ?>payment">Payment</a>
-                </li>
-            </ul>
-
             <div class="d-flex align-items-center bg-light text-dark rounded-8 p-1 flex-grow-1 mx-lg-4 mx-0 mb-lg-0 mb-3 pe-lg-3 border">
                 <form action="<?php echo $link_root_default . $location_slug; ?>search" method="GET" class="d-flex w-100 align-items-center">
                     <div class="form-floating w-100">
@@ -238,6 +220,23 @@ if (!isset($is_ad_mode) || (isset($is_ad_mode) && !$is_ad_mode)) { // Run the fu
                     </button>
                 </form>
             </div>
+            
+            <ul class="navbar-nav main-nav-list me-auto mb-2 mb-lg-0" style="gap: 20px;">
+                <li class="nav-item">
+                    <a class="nav-link" href="#menuModal" data-bs-toggle="modal">Course categories</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#membershipModal" data-bs-toggle="modal">Membership</a>
+                </li> -->
+
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo $link_root_path; ?>subscriptions">Subscriptions</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo $link_root_path; ?>payment">Payment</a>
+                </li>
+            </ul>
 
             <ul class="navbar-nav main-nav-list me-auto mb-2 mb-lg-0" style="gap: 20px;">
                 <li class="nav-item d-lg-block d-none">
@@ -253,7 +252,7 @@ if (!isset($is_ad_mode) || (isset($is_ad_mode) && !$is_ad_mode)) { // Run the fu
                     <a class="btn btn-custom-size-2 bg-green text-white btn-custom text-bold w-sm-100" href="<?php echo $link_portal_path; ?>">My profile</a>
                 <?php } elseif (!isset($hide_signin_option) || (isset($hide_signin_option) && !$hide_signin_option)) { ?>
                     <a class="btn btn-custom-size-2 text-dark btn-custom text-bold w-sm-100" href="<?php echo $link_portal_path . "user/access" . $url_extend; ?>">Log in</a>
-                    <a class="btn btn-custom-size-2 bg-green text-white btn-custom text-bold w-sm-100" href="<?php echo $link_portal_path . "user/register" . $url_extend; ?>">Apply now</a>
+                    <a class="btn btn-custom-size-2 bg-green text-white btn-custom text-bold w-sm-100" href="<?php echo $link_portal_path . "user/register" . $url_extend; ?>">Sign up</a>
                 <?php } ?>
             </div>
         </div>
@@ -390,31 +389,31 @@ if (!isset($is_ad_mode) || (isset($is_ad_mode) && !$is_ad_mode)) { // Run the fu
             <div class="modal-body p-3">
                 <div class="mega-menu row">
                     <div class="col mb-5">
-                        <h4><a href="<?php echo $link_root_path; ?>landing" style="color: #c10000; text-decoration: none;">Why join us?</a></h4>
+                        <h4><a href="<?php echo $link_root_path; ?>landing" style="color: #c10000; text-decoration: none;">Why Join London Real Estate Academy?</a></h4>
                         <hr>
-                        <p>At London Real Estate Academy (LREA), becoming a member means gaining access to exclusive opportunities, professional resources, and personalized support designed to enhance your personal, career, and educational development.</p>
+                        <p>Becoming a member of LREA gives you exclusive access to expert insights, industry resources, and tailored support to accelerate your career. Elevate your skills, expand your network, and stay ahead in the real estate industry</p>
+                        <p>LREA Membership Tiers – Unlock Exclusive Opportunities</p>
                     </div>
                     <div class="col mb-5">
-                        <h4><a href="<?php echo $link_root_path; ?>landing" style="color: #c10000; text-decoration: none;">LREA Top Management Membership</a></h4>
+                        <h4><a href="<?php echo $link_root_path; ?>landing" style="color: #c10000; text-decoration: none;">Top Management Membership</a></h4>
                         <hr>
-                        <p>LREA's Top Management Membership is designed for visionary leaders like you. Leverage our expertise, expand your network, and gain valuable perspectives to inform strategic decision-making.</p>
-                        <p>Join LREA's elite community of top management and gain access to bespoke services, expert guidance, and innovative solutions to drive organizational success</p>
+                        <p>For visionary leaders ready to shape the future of real estate. Gain access to bespoke services, strategic insights, and an elite network of industry pioneers. Elevate your decision-making with expert guidance and innovative solutions tailored for top executives.</p>
                     </div>
                     <div class="col mb-5">
-                        <h4><a href="<?php echo $link_root_path; ?>landing" style="color: #c10000; text-decoration: none;">LREA Professional Membership</a></h4>
+                        <h4><a href="<?php echo $link_root_path; ?>landing" style="color: #c10000; text-decoration: none;">Professional Membership</a></h4>
                         <hr>
-                        <p>Designed for emerging leaders and seasoned business professionals. This fosters a unique opportunity for continued growth and connection. It offers a platform to stay informed, engaged, and connected to our thriving professional network.</p>
+                        <p>Designed for both emerging leaders and seasoned professionals, this membership keeps you informed, engaged, and connected to a thriving real estate network. Stay ahead with exclusive resources, expert-led discussions, and career-enhancing opportunities.</p>
                     </div>
                     <div class="col mb-5">
-                        <h4><a href="<?php echo $link_root_path; ?>landing" style="color: #c10000; text-decoration: none;">LREA Student Membership:</a></h4>
+                        <h4><a href="<?php echo $link_root_path; ?>landing" style="color: #c10000; text-decoration: none;">Student Membership</a></h4>
                         <hr>
-                        <p>Bridge the Gap to Leadership. Connect with experienced professionals, learn from their experiences, and develop essential skills for a successful career. Start early by paving your Path to Excellence. Tap into the collective knowledge of industry experts, gain valuable perspectives, and develop your leadership potential. Join our dynamic community today.</p>
+                        <p>Bridge the gap between learning and leadership. Connect with industry experts, gain invaluable insights, and build essential skills for a successful real estate career.</p>
                     </div>
                     <div class="col mb-5">
                         <h4><a href="<?php echo $link_root_path; ?>landing" style="color: #c10000; text-decoration: none;">Join Now</a></h4>
                         <hr>
-                        <p>Sign up now to become part of our dynamic community, featuring access to exclusive services, resources, and hubs tailored to support your ambitions.</p>
-                        <a href="<?php echo $link_root_path; ?>payment" class="cta-btn">Sign up now</a>
+                        <p>Sign up today and gain access to exclusive resources, industry connections, and tailored support designed to fuel your ambitions in real estate. CTA: Join us today</p>
+                        <a href="<?php echo $link_root_path; ?>payment" class="cta-btn">Become a Member</a>
                     </div>
                 </div>
             </div>

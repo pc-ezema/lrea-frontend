@@ -74,8 +74,8 @@ require_once('components/doctype.inc.php');
                 <div class="row align-items-center">
                     <div class="col-lg-6 mb-lg-0 mb-3">
                         <div class="">
-                            <h1 class="text-bold text-white ft-custom-hero mb-2">About us</h1>
-                            <p class="text-white"><?php echo SITE_NAME; ?> offers you a powerful new way to learn online. Every course has been designed according to principles of effective learning.</p>
+                            <h1 class="text-bold text-white ft-custom-hero mb-2">About Us</h1>
+                            <p class="text-white"><?php echo SITE_NAME; ?> is redefining online learning with a powerful, results-driven approach. Every course is designed using proven learning principles to ensure real impact, not just information.</p>
                         </div>
                     </div>
                 </div>
@@ -86,7 +86,7 @@ require_once('components/doctype.inc.php');
                 <div class="row">
                     <div class="col-lg-12">
                         <h3>Who we are</h3>
-                        <p><span style="font-size: 18px;"><strong>Education powered by Technology</strong></span> <br /><br /><?php echo SITE_NAME; ?> is an Ed-tech pathway college revolutionizing education through technology. We provide affordable, high-quality, internationally recognized diplomas and executive education courses, with a focus on Africa, Asia, and the Middle East.</p>
+                        <p><span style="font-size: 18px;"><strong>Education powered by Technology</strong></span> <br /><br /><?php echo SITE_NAME; ?> is more than an academy—it’s a revolution in education. As an EdTech pathway college, we provide affordable, high-quality, internationally recognized diplomas and executive education courses. With a strong focus on Africa, Asia, and the Middle East, we empower learners with the skills and credentials to thrive in today’s global market.</p>
                     </div>
                 </div>
             </div>
@@ -95,19 +95,16 @@ require_once('components/doctype.inc.php');
             <div class="row">
                 <!-- Community Section -->
                 <div class="col-md-6">
-                    <h2 class="section-title">Our Community</h2>
-                    <p class="">
-                        LREA is a premier international membership community, fostering interdisciplinary collaboration, knowledge sharing, educational resources, and career advancement.
-                        Our diverse membership spans various sectors and professions.
-                    </p>
+                    <div class="card p-4">
+                        <h2 class="section-title">Our Community</h2>
+                        <p><span style="font-size: 18px;"><strong>A Global Network of Ambitious Professionals</strong></span> <br /><br /><?php echo SITE_NAME; ?> isn’t just a learning platform—it’s an exclusive international community. Here, professionals from diverse industries connect, collaborate, and advance together. From knowledge sharing to career growth, our members gain access to invaluable resources and opportunities.</p>
+                    </div>
                 </div>
                 <!-- Philosophy Section -->
                 <div class="col-md-6">
                     <div class="card p-4">
                         <h2 class="section-title">Our Philosophy</h2>
-                        <p>
-                            We believe professional growth knows no boundaries. That's why we offer tailored support, guidance, and resources to help members achieve their goals and make meaningful connections worldwide.
-                        </p>
+                        <p><span style="font-size: 18px;"><strong>No Limits. Just Growth.</strong></span> <br /><br />We believe professional growth knows no boundaries. That’s why we provide tailored support, expert guidance, and industry-relevant resources to help you achieve your goals and build meaningful connections, wherever you are in the world.</p>
                     </div>
                 </div>
             </div>

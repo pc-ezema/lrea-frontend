@@ -1,7 +1,7 @@
 <?php
 // CSS & JS Version for cache breaking
 // Only numbers, no dots or symbols
-$fileCacheVersion = '10'; 
+$fileCacheVersion = '11'; 
 $hostname_config = null; // Initialize with a default value
 $invokedFromCLI = null;
 

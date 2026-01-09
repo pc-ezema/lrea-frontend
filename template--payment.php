@@ -88,8 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($form_errors)) {
             // Verify the payment with Paystack
             if (isset($_POST['reference'])) {
-                if($currency == 'naira')
-                {
+                if ($currency == 'naira') {
                     $reference = $_POST['reference'];
 
                     // Verify the payment on the server-side
@@ -383,7 +382,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                                                         // Send the email using PHPMailer
                                                         $mail = new PHPMailer();
-                                                        $mail->SMTPDebug = 0;   
+                                                        $mail->SMTPDebug = 0;
                                                         $mail->IsSMTP();
                                                         $mail->SMTPAuth = true;
                                                         $mail->Host = MAILGUN_HOST_NAME;
@@ -392,7 +391,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                         $mail->Username = MAILGUN_STAFF_EMAILS_USERNAME;
                                                         $mail->Password = MAILGUN_STAFF_EMAILS_PASSWORD;
 
-                                                        
+
                                                         // $mail->Host = 'sandbox.smtp.mailtrap.io';
                                                         // $mail->Port = 2525;
                                                         // $mail->SMTPSecure = 'TLS';
@@ -730,7 +729,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                                                 // Send the email using PHPMailer
                                                 $mail = new PHPMailer();
-                                                $mail->SMTPDebug = 0;   
+                                                $mail->SMTPDebug = 0;
                                                 $mail->IsSMTP();
                                                 $mail->SMTPAuth = true;
                                                 $mail->Host = MAILGUN_HOST_NAME;
@@ -739,7 +738,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                 $mail->Username = MAILGUN_STAFF_EMAILS_USERNAME;
                                                 $mail->Password = MAILGUN_STAFF_EMAILS_PASSWORD;
 
-                                                
+
                                                 // $mail->Host = 'sandbox.smtp.mailtrap.io';
                                                 // $mail->Port = 2525;
                                                 // $mail->SMTPSecure = 'TLS';
@@ -909,32 +908,46 @@ require_once('components/doctype.inc.php');
     }
 
     #stripePayment {
-        background-color: #f9f9f9; /* Light background */
-        border-radius: 8px; /* Rounded corners */
-        padding: 20px; /* Spacing inside the card */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        background-color: #f9f9f9;
+        /* Light background */
+        border-radius: 8px;
+        /* Rounded corners */
+        padding: 20px;
+        /* Spacing inside the card */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        /* Subtle shadow */
     }
 
     #stripePayment .mb-3 {
-        margin-bottom: 15px; /* Space between fields */
+        margin-bottom: 15px;
+        /* Space between fields */
     }
 
     #card-element {
-        background-color: white; /* Card input background */
-        border: 1px solid #ddd; /* Border for card input */
-        border-radius: 4px; /* Rounded corners */
-        padding: 10px; /* Padding inside the input */
-        transition: border 0.3s ease; /* Smooth border transition */
+        background-color: white;
+        /* Card input background */
+        border: 1px solid #ddd;
+        /* Border for card input */
+        border-radius: 4px;
+        /* Rounded corners */
+        padding: 10px;
+        /* Padding inside the input */
+        transition: border 0.3s ease;
+        /* Smooth border transition */
     }
 
     #card-element:focus {
-        border-color: #007bff; /* Border color on focus */
-        outline: none; /* Remove default outline */
+        border-color: #007bff;
+        /* Border color on focus */
+        outline: none;
+        /* Remove default outline */
     }
 
     .invalid-feedback {
-        display: none; /* Hide initially */
-        color: #dc3545; /* Bootstrap danger color */
+        display: none;
+        /* Hide initially */
+        color: #dc3545;
+        /* Bootstrap danger color */
     }
 </style>
 
@@ -973,7 +986,7 @@ require_once('components/doctype.inc.php');
                                             </select>
                                         </div>
                                         <h1 id="paymentAmount" class="text-center mt-5 mb-5">£150</h1>
-                                        <h3 class="text-center">One Year Tuition Subscription Fee</h3>
+                                        <h3 class="text-center">One-Year Subscription Fee</h3>
                                     </div>
                                     <div class="col-2"></div>
                                 </div>
@@ -997,14 +1010,16 @@ require_once('components/doctype.inc.php');
                         <!-- How To Pay Section -->
                         <div class="card border-0 col-lg-6 py-4 animated fadeIn">
                             <div class="card-header text-center">
-                                <h2 class="text-white"><i class="fas fa-graduation-cap"></i> Sign Up Now To Become A Member!</h2>
+                                <h2 class="text-white"><i class="fas fa-graduation-cap"></i> Sign Up to Become a Member</h2>
                             </div>
 
                             <div class="mb-3" style="display: flex; justify-content: flex-end;">
-                                <label for="benefits" class="form-label">Membership Benefits</label>
-                                <span data-toggle="tooltip" data-placement="top" title="Click to see benefits">
-                                    <i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#benefitsModal"></i>
-                                </span>
+                                <a href="<?php echo $link_root_path; ?>landing" style="color: #c10000; text-decoration: none;">
+                                    <label for="benefits" class="form-label">Membership Benefits </label>
+                                    <span data-toggle="tooltip" data-placement="top" title="Click to see benefits">
+                                        <i class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#benefitsModal"></i>
+                                    </span>
+                                </a>
                             </div>
 
                             <div class="card-body">
@@ -1137,41 +1152,7 @@ require_once('components/doctype.inc.php');
                 </div>
             </section>
         </div>
-
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="benefitsModal" tabindex="-1" aria-labelledby="benefitsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="benefitsModalLabel">Exclusive Membership Benefits</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="course-info">
-                        <p><strong>Exclusive Benefits Include:</strong></p>
-                        <ul>
-                            <li><strong>Annual London Trip:</strong> Attend the prestigious LREA 2025 conference and network with industry leaders and professionals from around the world.</li>
-                            <li><strong>UK Professional Qualification Advantage:</strong> Leverage the LREA Certificate to enhance your career prospects, fast-track your professional qualification, and work in the UK.</li>
-                            <li><strong>Membership Annual Badge:</strong> Proudly display your affiliation with LREA, UK.</li>
-                            <li><strong>Professional Endorsement Letter:</strong> Receive letters of recommendation to support your career growth and development in various fields and industries.</li>
-                            <li><strong>Invitations to VVIP Events:</strong> Get exclusive invitations to high-profile events and conferences, connecting with professionals and expanding your network in Lagos and globally.</li>
-                            <li><strong>Exclusive Mentorship Program:</strong> Get paired with experienced industry professionals for personalized guidance.</li>
-                            <li><strong>Access to an Exclusive Club in Victoria Island:</strong> Enjoy the privileges of an exclusive elite club, only accessible to LREA members.</li>
-                            <li><strong>Visa Application Support:</strong> Benefit from letters of recommendation from LREA for UK visa or contract applications.</li>
-                            <li><strong>Exclusive Q&A/Interview Sessions:</strong> Participate in sessions with industry leaders and trailblazers, gaining valuable insights and advice.</li>
-                            <li><strong>Yearly Raffle Draws:</strong> Enter for a chance to win an all-expense-paid trip to the UK, exclusive to members...and lots more!</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- /Main Content -->
 
     <?php require_once('components/footer.inc.php'); ?>
@@ -1356,14 +1337,14 @@ require_once('components/doctype.inc.php');
             var selectedCurrency;
             // Determine the selected currency and amount
             const currency = document.getElementById("currency").value;
-            if(currency === "dollars") {
+            if (currency === "dollars") {
                 selectedAmount = 18000; // Amount in cents for USD ($180)
                 selectedCurrency = 'usd';
-            } else if(currency === 'pounds') {
+            } else if (currency === 'pounds') {
                 selectedAmount = 15000; // Amount in pence for GBP (£150)
                 selectedCurrency = 'gbp';
             }
-            
+
             var email = document.getElementById('email').value;
             var name = document.getElementById('card-name').value;
 

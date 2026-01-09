@@ -163,9 +163,9 @@
         <div class="testimonial-layout py-5">
             <div class="container">
                 <div class="mb-4">
-                    <p class="text-green text-bold mb-1">Testimonial</p>
-                    <h3 class="text-bold">Discover the success stories of learners like yourself</h3>
-                    <p>Where learning goes beyond acquiring new skills to also deliver an enjoyable experience.</p>
+                    <p class="text-green text-bold mb-1">Testimonials</p>
+                    <h3 class="text-bold">Real stories. Real impact.</h3>
+                    <p>Read how our learners have gained new skills and achieved real growth and success.</p>
                 </div>
                 <div class="row" data-masonry='{"percentPosition": true }'>
                     <?php foreach ($array_of_reviews as $key => $review_content) { ?>
@@ -208,9 +208,9 @@
         <div class="testimonial-layout py-5">
             <div class="container">
                 <div class="mb-4">
-                    <p class="text-green text-bold mb-1">Testimonial</p>
-                    <h3 class="text-bold">Discover the success stories of learners like yourself</h3>
-                    <p>Where learning goes beyond acquiring new skills to also deliver an enjoyable experience.</p>
+                    <p class="text-green text-bold mb-1">Testimonials</p>
+                    <h3 class="text-bold">Real stories. Real impact.</h3>
+                    <p>Read how our learners have gained new skills and achieved real growth and success.</p>
                 </div>
                 <div class="row" data-masonry='{"percentPosition": true }'>
                     <div class="col-sm-6 col-lg-4 mb-4">

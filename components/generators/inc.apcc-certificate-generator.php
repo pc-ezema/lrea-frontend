@@ -79,7 +79,7 @@
         // add a page
         $pdf->AddPage();
 
-        $pdf->Ln(60);
+        $pdf->Ln(70);
 
         // Set the x-coordinate to center the box
         $pdf->SetX(40);
@@ -88,7 +88,7 @@
         // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
         $pdf->MultiCell(130, 20, trim($pdf_full_name), 0, 'C', 0, 0, '', '', true, 0, false, true, 20, 'M', true); //clean_name($pdf_full_name)
 
-        $pdf->Ln(45);
+        $pdf->Ln(38);
 
         // Set the x-coordinate to center the box
         $pdf->SetX(40);
@@ -101,7 +101,7 @@
         // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
         $pdf->MultiCell(130, 25, ucwords($pdf_prog_name), 0, 'C', 0, 0, '', '', true, 0, false, true, 25, 'M', true);
 
-        $pdf->Ln(37);
+        $pdf->Ln(46);
 
         // set font
         $pdf->SetFont('century_gothic_b', 'B', 10);
@@ -111,14 +111,14 @@
         // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
         $pdf->MultiCell(170, 20, ucwords($pdf_prog_completion_date.'.'), 0, 'C', 0, 0, '', '', true, 0, false, true, 20, 'M', true);
 
-        $pdf->Ln(36);
+        $pdf->Ln(35);
 
         // set font
         $pdf->SetFont('century_gothic', '', 10);
 
         // Vertical alignment with auto-resize of text in cell
         // MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
-        $pdf->MultiCell(170, 10, ucwords($pdf_certificate_number), 0, 'C', 0, 0, '', '', true, 0, false, true, 10, 'M', true);
+        $pdf->MultiCell(58, 10, ucwords($pdf_certificate_number), 0, 'C', 0, 0, '', '', true, 0, false, true, 10, 'M', true);
 
         if ($pdf_co_issue_cert_biz_logo && $pdf_co_issue_cert_biz_text) {
             $pdf->Ln(-5);
@@ -135,6 +135,11 @@
 
             $pdf->Image($pdf_co_issue_cert_biz_logo, 82, 195, 30, 30, '', '', 'M', true, 300, 'T', false, false, 0, 'CM');
         }
+
+        $pdf->Ln(-1); // Adjust spacing as needed
+        $pdf->SetFont('century_gothic', '', 10);
+        // $pdf->SetTextColor(0, 0, 0);
+        $pdf->MultiCell(278, 10, $membership_number, 0, 'C', 0, 0, '', '', true, 0, false, true, 10, 'M', true);
 
         // ---------------------------------------------------------
 

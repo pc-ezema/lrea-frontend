@@ -1,6 +1,5 @@
 <div class="card border-0 card-body border bg-light font-fam rounded text-start px-4 py-4 mb-4 mt-lg-5 sticky-top" style="top: 100px;z-index:unset;">
-    <h2 class="make-bold"><?php echo $monthly_subscription_amount_plus_currency; ?>/month</h2>
-    <h5 class="make-bold mb-3">Billed <?php echo $billing_duration_text; ?> at <?php echo $subscription_amount; ?></h5>
+    <h3 class="make-bold"><?php echo $subscription_amount; ?>/yearly</h3>
 
     <p class="ft-sm">We are dedicated to delivering the most cost-effective learning opportunity.</p>
 
