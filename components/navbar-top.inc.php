@@ -317,7 +317,15 @@ if (!isset($is_ad_mode) || (isset($is_ad_mode) && !$is_ad_mode)) { // Run the fu
 
                 <?php if ($sess_user_id > 0 && $_SESSION['user_type'] == 'student') { // If student is logged in 
                 ?>
-                    <a class="btn btn-custom-size-2 bg-green text-white btn-custom text-bold w-sm-100" href="<?php echo $link_portal_path; ?>">My profile</a>
+                    <!-- Logged in -->
+                    <a class="btn btn-custom-size-2 bg-green text-white btn-custom text-bold w-sm-100" 
+                        href="<?php echo $link_portal_path; ?>">
+                        My profile
+                    </a>
+                    <a class="btn btn-custom-size-2 bg-green text-white btn-custom text-bold w-sm-100" 
+                        href="<?php echo $link_root_path; ?>logout">
+                        Logout
+                    </a>
                 <?php } elseif (!isset($hide_signin_option) || (isset($hide_signin_option) && !$hide_signin_option)) { ?>
                     <a class="btn btn-custom-size-2 text-dark btn-custom text-bold w-sm-100" href="<?php echo $link_portal_path . "user/access" . $url_extend; ?>">Log in</a>
                     <a class="btn btn-custom-size-2 bg-green text-white btn-custom text-bold w-sm-100" href="<?php echo $link_portal_path . "user/register" . $url_extend; ?>">Sign up</a>
@@ -488,17 +496,3 @@ if (!isset($is_ad_mode) || (isset($is_ad_mode) && !$is_ad_mode)) { // Run the fu
         </div>
     </div>
 </div>
-<script>
-$(document).ready(function() {
-    $("#desktopCartButton").on("click", function(e) {
-        e.preventDefault();
-        $("#desktopMiniCart").toggleClass("show");
-    });
-
-    $(document).on("click", function(e) {
-        if (!$(e.target).closest("#desktopMiniCart, #desktopCartButton").length) {
-            $("#desktopMiniCart").removeClass("show");
-        }
-    });
-});
-</script>

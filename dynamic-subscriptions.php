@@ -813,7 +813,7 @@
                                                         <?php for ($i = 0; $i < count($short_courses_results); $i++) { ?>
                                                             <?php if ($i == $max_visible_first) break; ?>
                                                             <?php $row_DisProg = $short_courses_results[$i]; ?>
-                                                            <div class="col-lg-4 mb-4 position-relative">
+                                                            <div class="col-xl-6 col-lg-6 col-sm-12 mb-4 position-relative">
                                                                 <?php include('inc.programme-box.php') ?>
                                                             </div>
                                                         <?php } ?>
@@ -825,7 +825,7 @@
                                                         <div class="row">
                                                             <?php for ($i = $max_visible_first; $i < count($short_courses_results); $i++) { ?>
                                                                 <?php $row_DisProg = $short_courses_results[$i]; ?>
-                                                                <div class="col-lg-4 mb-4 position-relative">
+                                                                <div class="col-xl-6 col-lg-6 col-sm-12 mb-4 position-relative">
                                                                     <?php include('inc.programme-box.php') ?>
                                                                 </div>
                                                             <?php } ?>
@@ -856,7 +856,7 @@
                                                         <?php for ($i = 0; $i < count($advanced_professional_courses_results); $i++) { ?>
                                                             <?php if ($i == $max_visible_first) break; ?>
                                                             <?php $row_DisProg = $advanced_professional_courses_results[$i]; ?>
-                                                            <div class="col-lg-4 mb-4 position-relative">
+                                                            <div class="col-xl-6 col-lg-6 col-sm-12 mb-4 position-relative">
                                                                 <?php include('inc.programme-box.php') ?>
                                                             </div>
                                                         <?php } ?>
@@ -868,7 +868,7 @@
                                                         <div class="row">
                                                             <?php for ($i = $max_visible_first; $i < count($advanced_professional_courses_results); $i++) { ?>
                                                                 <?php $row_DisProg = $advanced_professional_courses_results[$i]; ?>
-                                                                <div class="col-lg-4 mb-4 position-relative">
+                                                                <div class="col-xl-6 col-lg-6 col-sm-12 mb-4 position-relative">
                                                                     <?php include('inc.programme-box.php') ?>
                                                                 </div>
                                                             <?php } ?>
@@ -899,7 +899,7 @@
                                                         <?php for ($i = 0; $i < count($masters_courses_results); $i++) { ?>
                                                             <?php if ($i == $max_visible_first) break; ?>
                                                             <?php $row_DisProg = $masters_courses_results[$i]; ?>
-                                                            <div class="col-lg-4 mb-4 position-relative">
+                                                            <div class="col-xl-6 col-lg-6 col-sm-12 mb-4 position-relative">
                                                                 <?php include('inc.programme-box.php') ?>
                                                             </div>
                                                         <?php } ?>
@@ -911,7 +911,7 @@
                                                         <div class="row">
                                                             <?php for ($i = $max_visible_first; $i < count($masters_courses_results); $i++) { ?>
                                                                 <?php $row_DisProg = $masters_courses_results[$i]; ?>
-                                                                <div class="col-lg-4 mb-4 position-relative">
+                                                                <div class="col-xl-6 col-lg-6 col-sm-12 mb-4 position-relative">
                                                                     <?php include('inc.programme-box.php') ?>
                                                                 </div>
                                                             <?php } ?>
@@ -1006,7 +1006,7 @@
                                     }
                                 ?>       
                                 <?php if ($amount_paystack) { ?>
-                                    <div class="col-lg-4 col-6 mb-3">
+                                    <div class="col-xl-6 col-lg-6 col-sm-12 col-6 mb-3">
                                         <form action="" method="post" id="paymentForm" class="h-100">
                                             <a href="javascript:{}" onclick="document.getElementById('payWithPaystack').click()" class="text-decoration-none">
                                                 <div class="card card-body py-3 h-100 rounded-0 justify-content-center align-items-center cursor-pointer hover-card-effect">
@@ -1056,7 +1056,7 @@
                             <?php } ?>
 
                             <?php if ($allow_stripe_payment) { // If stripe gateway is allowed ?>
-                                <div class="col-lg-4 col-6 mb-3">
+                                <div class="col-xl-6 col-lg-6 col-sm-12 col-6 mb-3">
                                     <a href="<?php echo append_to_url($current_subscription_page_url, 'gateway=stripe'); ?>" class="init_checkout text-decoration-none" data-gatewayname="Stripe">
                                         <div class="card card-body py-3 h-100 rounded-0 justify-content-center align-items-center cursor-pointer hover-card-effect">
                                             <div>
@@ -1072,7 +1072,7 @@
 
                             <?php if (PAYPAL_CLIENT_ID) { ?>
                                 <?php if ($paypal_usd_amount && $allow_paypal_payment) { // If paypal gateway is allowed ?>
-                                    <div class="col-lg-4 col-6 mb-3">
+                                    <div class="col-xl-6 col-lg-6 col-sm-12 col-6 mb-3">
                                         <a href="#" class="init_checkout text-decoration-none" data-gatewayname="Paypal">
                                             <div class="card card-body py-3 h-100 rounded-0 justify-content-center align-items-center cursor-pointer hover-card-effect" id="paypal-button-container" style="padding:10px">
                                                 <div>

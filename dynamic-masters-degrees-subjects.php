@@ -138,7 +138,7 @@
                                     <?php $i = 0; ?>
                                     <?php do { ?>
                                         <?php if ($i++ == $max_visible_first) break; ?>
-                                        <div class="col-lg-3 mb-4 position-relative">
+                                        <div class="col-xl-3 mb-4 position-relative">
                                             <?php include('inc.programme-box.php') ?>
                                         </div>                                        
                                     <?php } while($row_DisProg = mysqli_fetch_assoc($DisProg)); ?>
@@ -149,7 +149,7 @@
                                 <div class="courses-container-lister">
                                     <div class="row">
                                         <?php do { ?>
-                                            <div class="col-lg-3 mb-4 position-relative">
+                                            <div class="col-xl-3 mb-4 position-relative">
                                                 <?php include('inc.programme-box.php') ?>
                                             </div>
                                         <?php } while($row_DisProg = mysqli_fetch_assoc($DisProg)); ?>

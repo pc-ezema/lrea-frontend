@@ -209,7 +209,7 @@
                                             <div class="row">
                                                 <?php do { ?>
                                                     <?php if ($i++ == $max_visible_first) break; ?>
-                                                    <div class="col-lg-3 mb-4 position-relative">
+                                                    <div class="col-xl-4 col-lg-6 col-sm-12 mb-4 position-relative">
                                                         <?php include('inc.programme-box.php') ?>
                                                     </div>                                        
                                                 <?php } while($row_DisProg = mysqli_fetch_assoc($DisProg)); ?>
@@ -218,7 +218,7 @@
                                             <div class="collapse" id="collapseMore<?php echo $subject_key; ?>">
                                                 <div class="row">
                                                     <?php do { ?>
-                                                        <div class="col-lg-3 mb-4 position-relative">
+                                                        <div class="col-xl-4 col-lg-6 col-sm-12 mb-4 position-relative">
                                                             <?php include('inc.programme-box.php') ?>
                                                         </div>
                                                     <?php } while($row_DisProg = mysqli_fetch_assoc($DisProg)); ?>

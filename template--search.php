@@ -188,7 +188,7 @@
                                 <div class="courses-container-lister">
                                     <div class="row">
                                         <?php do { ?>
-                                            <div class="col-lg-3 mb-4 position-relative">
+                                            <div class="col-xl-4 col-lg-6 col-sm-12 mb-4 position-relative">
                                                 <?php include('inc.programme-box.php') ?>
                                             </div>
                                         <?php } while ($row_DisProg = mysqli_fetch_assoc($DisProg)); ?>
@@ -227,7 +227,7 @@
                                 <div class="courses-container-lister">
                                     <div class="row">
                                         <?php do { ?>
-                                            <div class="col-lg-3 mb-4 position-relative">
+                                            <div class="col-xl-4 col-lg-6 col-sm-12 mb-4 position-relative">
                                                 <?php include('inc.programme-box.php') ?>
                                             </div>
                                         <?php } while ($row_DisProg = mysqli_fetch_assoc($DisProg)); ?>
@@ -266,7 +266,7 @@
                                 <div class="courses-container-lister">
                                     <div class="row">
                                         <?php do { ?>
-                                            <div class="col-lg-3 mb-4 position-relative">
+                                            <div class="col-xl-4 col-lg-6 col-sm-12 mb-4 position-relative">
                                                 <?php include('inc.programme-box.php') ?>
                                             </div>
                                         <?php } while ($row_DisProg = mysqli_fetch_assoc($DisProg)); ?>
@@ -305,7 +305,7 @@
                                 <div class="courses-container-lister">
                                     <div class="row">
                                         <?php do { ?>
-                                            <div class="col-lg-3 mb-4 position-relative">
+                                            <div class="col-xl-4 col-lg-6 col-sm-12 mb-4 position-relative">
                                                 <?php include('inc.programme-box.php') ?>
                                             </div>
                                         <?php } while ($row_DisProg = mysqli_fetch_assoc($DisProg)); ?>
