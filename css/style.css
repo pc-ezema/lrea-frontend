@@ -2375,3 +2375,107 @@ h6 {
 .mt-10 {
     margin-top: 8.5rem;
 }
+
+
+/* Promise Styles */
+.cart-hover-wrapper:hover .mini-cart-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Desktop dropdown hidden by default */
+.mini-cart-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 360px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    /* padding: 15px; */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.25s ease;
+    z-index: 1000;
+}
+
+/* Show when active */
+.mini-cart-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.cart-count-badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: #28a745;
+    color: #fff;
+    font-size: 12px;
+    padding: 3px 7px;
+    border-radius: 50%;
+}
+.course-footer {
+    /* Flex layout: left button, right price */
+    width: 100%;
+    padding-left: 1rem;   /* remove padding if parent has it */
+    padding-right: 1rem;  /* remove padding for symmetry */
+}
+
+.course-footer .btn {
+    margin-left: 0;    /* ensure button starts at the edge */
+}
+
+.price-wrapper {
+    line-height: 1.15;
+    text-align: right;  /* ensure right-aligned */
+    flex-shrink: 0;     /* don't shrink */
+}
+
+.current-price {
+    font-weight: 700;
+    color: var(--green);
+}
+
+.currency-symbol {
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+.price-value {
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+.price-period {
+    font-size: 0.75rem;
+    font-weight: 500;
+    opacity: 0.75;
+}
+
+.original-price {
+    font-size: 0.85rem;
+    opacity: 0.65;
+}
+
+.original-price del {
+    text-decoration-thickness: 2px;
+    text-decoration-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 576px) {
+    .course-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .price-wrapper {
+        align-self: flex-end;  /* keeps price on right even when stacked */
+        text-align: right;
+    }
+}

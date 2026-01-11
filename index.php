@@ -559,7 +559,7 @@ require_once('components/doctype.inc.php');
                         <p class="text-green text-bold mb-1">Certificates & Courses for Professionals</p>
                         <h3 class="mb-4">Explore Professional Courses</h3>
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-12">
                                 <div class="owl-carousel position-relative courses-carousel owl-theme">
                                     <?php do { ?>
                                         <div class="item position-relative h-100">

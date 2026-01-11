@@ -12,14 +12,14 @@ $('.owl-carousel.testimonial-carousel').owlCarousel({
     autoplayHoverPause: true,
     nav: true,
     responsive: {
-        0: {
+        0: {        // Mobile
             items: 1
         },
-        600: {
+        768: {      // Tablet / Medium screens
+            items: 2
+        },
+        1200: {     // Large screens / Full desktop
             items: 3
-        },
-        1000: {
-            items: 1
         }
     }
 })
@@ -32,14 +32,14 @@ $('.owl-carousel.courses-carousel').owlCarousel({
     autoplayHoverPause: true,
     nav: true,
     responsive: {
-        0: {
+        0: {        // Mobile
             items: 1
         },
-        600: {
-            items: 3
+        768: {      // Tablet / Medium screens
+            items: 2
         },
-        1000: {
-            items: 4
+        1200: {     // Large screens / Full desktop
+            items: 3
         }
     }
 })

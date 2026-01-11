@@ -5,14 +5,14 @@ $link_portal_path = defined('ROOT_DIR_PORTAL') ? ROOT_DIR_PORTAL : ROOT_DIR;
 ?>
 
 
-<a href="<?php echo $link_root_path; ?>cart" class="float d-flex justify-content-center align-items-center">
+<!-- <a href="<?php echo $link_root_path; ?>cart" class="float d-flex justify-content-center align-items-center">
     <div class="position-relative">
         <div class="text-white"><i data-feather="shopping-cart"></i></div>
         <div class="in-cart-indicator bg-green cart-badge" <?php if ($no_of_courses_in_cart == 0) echo 'style="display: none;"'; ?>>
             <span class="count-wish count-wish-2"><?php echo $no_of_courses_in_cart; ?></span>
         </div>
     </div>
-</a>
+</a> -->
 
 <footer class="main-footer-2 bg-black pt-5">
     <div class="container">

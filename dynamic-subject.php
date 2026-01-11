@@ -273,9 +273,18 @@
                                         }
                                     }
                                 ?>
-                                <?php if (count($ipgd_courses_results)) { ?>
+                                <?php if (!empty($ipgd_courses_results) && count($ipgd_courses_results) > 0) { ?>
                                     <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="pills-ipgd-tab" data-bs-toggle="pill" data-bs-target="#pills-ipgd" type="button" role="tab" aria-controls="pills-ipgd" aria-selected="false">International Postgraduate Diploma</button>
+                                        <button class="nav-link"
+                                                id="pills-ipgd-tab"
+                                                data-bs-toggle="pill"
+                                                data-bs-target="#pills-ipgd"
+                                                type="button"
+                                                role="tab"
+                                                aria-controls="pills-ipgd"
+                                                aria-selected="false">
+                                            International Postgraduate Diploma
+                                        </button>
                                     </li>
                                 <?php } ?>
                             </ul>
@@ -415,45 +424,69 @@
                                         </div>
                                     <?php } ?> -->
 
-                                    <?php if (count($ipgd_courses_results)) { ?>
-                                        <div class="tab-pane fade <?php if(!$active_tab_exists) { echo 'show active'; $active_tab_exists = true; } ?>" id="pills-ipgd" role="tabpanel" aria-labelledby="pills-ipgd-tab" tabindex="0">
+                                    <?php
+                                        $ipgd_courses_results = is_array($ipgd_courses_results) ? $ipgd_courses_results : [];
+                                        $ipgd_count = count($ipgd_courses_results);
+                                    ?>
+
+                                    <?php if ($ipgd_count > 0) { ?>
+                                        <div class="tab-pane fade <?php if (!$active_tab_exists) { echo 'show active'; $active_tab_exists = true; } ?>"
+                                            id="pills-ipgd"
+                                            role="tabpanel"
+                                            aria-labelledby="pills-ipgd-tab"
+                                            tabindex="0">
+
                                             <div class="py-4">
                                                 <h3 class="text-bold">International Postgraduate Diploma</h3>
                                                 <p>These programmes are 120 credit and available in various subjects.</p>
                                             </div>
+
+                                            <!-- First batch -->
                                             <div class="courses-container-lister">
                                                 <div class="row">
-                                                    <?php for ($i = 0; $i < count($ipgd_courses_results); $i++) { ?>
-                                                        <?php if ($i == $max_visible_first) break; ?>
-                                                        <?php $row_DisProg = $ipgd_courses_results[$i]; ?>
+                                                    <?php
+                                                    $first_limit = min($max_visible_first, $ipgd_count);
+                                                    for ($i = 0; $i < $first_limit; $i++) {
+                                                        $row_DisProg = $ipgd_courses_results[$i];
+                                                    ?>
                                                         <div class="col-lg-3 mb-4 position-relative">
-                                                            <?php include('inc.programme-box.php') ?>
+                                                            <?php include('inc.programme-box.php'); ?>
                                                         </div>
                                                     <?php } ?>
                                                 </div>
                                             </div>
 
-                                            <div class="collapse" id="collapseMore3">
-                                                <div class="courses-container-lister">
-                                                    <div class="row">
-                                                        <?php for ($i = $max_visible_first; $i < count($ipgd_courses_results); $i++) { ?>
-                                                            <?php $row_DisProg = $ipgd_courses_results[$i]; ?>
-                                                            <div class="col-lg-3 mb-4 position-relative">
-                                                                <?php include('inc.programme-box.php') ?>
-                                                            </div>
-                                                        <?php } ?>
+                                            <!-- Collapsed batch -->
+                                            <?php if ($ipgd_count > $max_visible_first) { ?>
+                                                <div class="collapse" id="collapseMore3">
+                                                    <div class="courses-container-lister">
+                                                        <div class="row">
+                                                            <?php
+                                                            for ($i = $max_visible_first; $i < $ipgd_count; $i++) {
+                                                                $row_DisProg = $ipgd_courses_results[$i];
+                                                            ?>
+                                                                <div class="col-lg-3 mb-4 position-relative">
+                                                                    <?php include('inc.programme-box.php'); ?>
+                                                                </div>
+                                                            <?php } ?>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <?php if (count($ipgd_courses_results) > $max_visible_first) { ?>
+                                                <!-- Toggle button -->
                                                 <div class="text-center mt-4">
-                                                    <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseMore3" aria-expanded="false" aria-controls="collapseMore3" class="btn btn-custom-size-2 bg-white border btn-custom btn-collapse-view">
+                                                    <button type="button"
+                                                            data-bs-toggle="collapse"
+                                                            data-bs-target="#collapseMore3"
+                                                            aria-expanded="false"
+                                                            aria-controls="collapseMore3"
+                                                            class="btn btn-custom-size-2 bg-white border btn-custom btn-collapse-view">
                                                         <div class="show_more">Show more <i data-feather="chevron-down"></i></div>
                                                         <div class="show_less">Show less <i data-feather="chevron-up"></i></div>
                                                     </button>
                                                 </div>
                                             <?php } ?>
+
                                         </div>
                                     <?php } ?>
                                 </div>

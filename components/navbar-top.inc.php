@@ -192,36 +192,55 @@ if (!isset($is_ad_mode) || (isset($is_ad_mode) && !$is_ad_mode)) { // Run the fu
         color: white;
     }
 </style>
+
 <nav class="navbar navbar-expand-lg bg-white main-navbar border-bottom navbar-light fixed-top">
     <div class="container">
         <a class="navbar-brand apply-grow-sm" href="<?php echo $link_root_path; ?>">
             <img src="<?php echo ROOT_DIR . 'images/main-logo-2.png?v=' . $fileCacheVersion; ?>" class="img-fluid" width="100" />
         </a>
 
-        <div class="nav-item ms-auto d-lg-none d-block">
-            <a class="nav-link position-relative cursor-pointer" data-bs-toggle="modal" data-bs-target="#countryModal">
-                <i data-feather="globe" style="height: 25px; width: 25px;" class="text-black"></i>
-            </a>
+        <div class="d-lg-none d-flex justify-content-end gap-3">
+            <!-- Globe + Cart Wrapper -->
+            <div class="d-flex gap-3 me-3">
+                <!-- Globe Icon -->
+                <a class="nav-link p-0 position-relative cursor-pointer" data-bs-toggle="modal" data-bs-target="#countryModal">
+                    <i data-feather="globe" style="height:25px;width:25px;" class="text-black"></i>
+                </a>
+
+                <!-- Cart Icon with Badge and Dropdown -->
+                <div class="dropdown" id="miniCartMobile">
+                    <a class="nav-link p-0 position-relative cursor-pointer text-black" id="miniCartDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+
+                        <i data-feather="shopping-cart" style="height:25px;width:25px;"></i>
+
+                        <!-- Cart Badge -->
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-badge count-wish"
+                            style="<?php echo ($no_of_courses_in_cart > 0) ? '' : 'display:none;'; ?>">
+                            <?php echo (int)$no_of_courses_in_cart; ?>
+                        </span>
+                    </a>
+
+                    <!-- Mobile Dropdown -->
+                    <ul class="dropdown-menu dropdown-menu-end p-0 mobileMiniCart" aria-labelledby="miniCartDropdown" style="min-width: 0!important;">
+                        <li>
+                            <div class="mini-cart-wrapper" >
+                                <?php include('inc.mini-cart.php'); ?>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Hamburger Button -->
+            <button class="navbar-toggler border-0 px-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i data-feather="menu" class="text-black"></i>
+            </button>
         </div>
-        <button class="navbar-toggler border-0 px-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <i data-feather="menu" class="text-black"></i>
-        </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="d-flex align-items-center bg-light text-dark rounded-8 p-1 flex-grow-1 mx-lg-4 mx-0 mb-lg-0 mb-3 pe-lg-3 border">
-                <form action="<?php echo $link_root_default . $location_slug; ?>search" method="GET" class="d-flex w-100 align-items-center">
-                    <div class="form-floating w-100">
-                        <input type="search" name="k" class="form-control text-dark bg-light rounded-pill border-0" id="floatingSearch" placeholder="What do you want to learn?" required>
-                        <label for="floatingSearch">What do you want to learn?</label>
-                    </div>
-
-                    <button class="btn btn-custom-size-2 rounded-8 btn-custom-color-1 text-main-4 btn-custom text-bold">
-                        <i data-feather="search" class="text-white"></i>
-                    </button>
-                </form>
-            </div>
-            
-            <ul class="navbar-nav main-nav-list me-auto mb-2 mb-lg-0" style="gap: 20px;">
+            <ul class="navbar-nav main-nav-list align-items-center me-auto mb-2 mb-lg-0 gap-lg-4 gap-3">
                 <li class="nav-item">
                     <a class="nav-link" href="#menuModal" data-bs-toggle="modal">Course categories</a>
                 </li>
@@ -233,20 +252,69 @@ if (!isset($is_ad_mode) || (isset($is_ad_mode) && !$is_ad_mode)) { // Run the fu
                     <a class="nav-link" href="<?php echo $link_root_path; ?>subscriptions">Subscriptions</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $link_root_path; ?>payment">Payment</a>
-                </li>
-            </ul>
+                <!-- Search Bar -->
+                <li class="nav-item flex-grow-1 mx-lg-4 mx-0 mb-lg-0 mb-3">
+                    <div class="d-flex align-items-center bg-light text-dark rounded-8 p-1 border">
 
-            <ul class="navbar-nav main-nav-list me-auto mb-2 mb-lg-0" style="gap: 20px;">
-                <li class="nav-item d-lg-block d-none">
-                    <a class="nav-link position-relative cursor-pointer text-black" data-bs-toggle="modal" data-bs-target="#countryModal">
-                        <i data-feather="globe" style="height: 25px; width: 25px;"></i>
-                    </a>
+                        <form action="<?php echo $link_root_default . $location_slug; ?>search"
+                            method="GET"
+                            class="d-flex w-100 align-items-center">
+
+                            <div class="form-floating w-100">
+                                <input type="search"
+                                    name="k"
+                                    class="form-control text-dark bg-light rounded-pill border-0"
+                                    id="floatingSearch"
+                                    placeholder="What do you want to learn?"
+                                    required>
+                                <label for="floatingSearch">What do you want to learn?</label>
+                            </div>
+
+                            <button class="btn btn-custom-size-2 rounded-8 btn-custom-color-1 text-main-4 btn-custom text-bold ms-2">
+                                <i data-feather="search" class="text-white"></i>
+                            </button>
+
+                        </form>
+                    </div>
                 </li>
+                
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="<?php echo $link_root_path; ?>payment">Payment</a>
+                </li> -->
             </ul>
 
             <div class="d-flex" style="gap: 20px;">
+                <ul class="navbar-nav main-nav-list me-auto mb-2 mb-lg-0" style="gap: 20px;">
+                    <li class="nav-item d-lg-block d-none">
+                        <a class="nav-link position-relative cursor-pointer text-black" data-bs-toggle="modal" data-bs-target="#countryModal">
+                            <i data-feather="globe" style="height: 25px; width: 25px;"></i>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav main-nav-list cart-hover-wrapper me-auto mb-2 mb-lg-0" style="gap: 20px;">
+                    <li class="nav-item d-lg-block d-none">
+                        <a class="nav-link position-relative cursor-pointer text-black">
+
+                            <i data-feather="shopping-cart" style="height: 25px; width: 25px;"></i>
+
+                            <!-- Cart Badge (ALWAYS EXISTS) -->
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-badge count-wish"
+                                style="<?php echo ($no_of_courses_in_cart > 0) ? '' : 'display:none;'; ?>">
+                                <?php echo (int) $no_of_courses_in_cart; ?>
+                            </span>
+
+                        </a>
+
+                        <!-- Desktop / Full Width -->
+                        <div class="mini-cart-dropdown" id="desktopMiniCart">
+                            <div class="row cart-view-sect mini-cart-wrapper" id="miniCartDesktop">
+                                <?php include('inc.mini-cart.php'); ?>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
                 <?php if ($sess_user_id > 0 && $_SESSION['user_type'] == 'student') { // If student is logged in 
                 ?>
                     <a class="btn btn-custom-size-2 bg-green text-white btn-custom text-bold w-sm-100" href="<?php echo $link_portal_path; ?>">My profile</a>
@@ -420,3 +488,17 @@ if (!isset($is_ad_mode) || (isset($is_ad_mode) && !$is_ad_mode)) { // Run the fu
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function() {
+    $("#desktopCartButton").on("click", function(e) {
+        e.preventDefault();
+        $("#desktopMiniCart").toggleClass("show");
+    });
+
+    $(document).on("click", function(e) {
+        if (!$(e.target).closest("#desktopMiniCart, #desktopCartButton").length) {
+            $("#desktopMiniCart").removeClass("show");
+        }
+    });
+});
+</script>

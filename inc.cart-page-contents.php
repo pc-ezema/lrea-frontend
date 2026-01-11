@@ -91,7 +91,7 @@
                         }
                         
                         if (!$part_payment_allowed) {
-                            $profile_student_amount_saved = $dis_programme_original_fee - $dis_programme_fee;
+                            $profile_student_amount_saved = (float)$dis_programme_original_fee - (float)$dis_programme_fee;
                             $symbol_of_profile_student_currency = $symbol_for_programme_currency;
                         }
 
@@ -331,7 +331,7 @@
                                         $dis_programme_fee += $othm_cert_fee;
                                     }
                                 
-                                    $total_fees_in_cart+=$dis_programme_fee; 
+                                    $total_fees_in_cart+=(float)$dis_programme_fee; 
                                 ?>
                             </div>
                         </div>

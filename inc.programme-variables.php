@@ -1,4 +1,8 @@
 <?php 
+    $progs_in_certificate_extra_fees_array ??= [];
+    $progs_in_certificate_attestation_array ??= [];
+    $progs_in_certificate_othm_array ??= [];
+
     // Basic information
     $dis_programme_id = $row_DisProg['programme_id'] ? $row_DisProg['programme_id'] : '0';
     $dis_programme_name = $row_DisProg['programme_name'] ? $row_DisProg['programme_name'] : '';
@@ -320,7 +324,7 @@
     }
     
     $dis_programme_fee = $row_DisProg['discounted_fee'] ? round($row_DisProg['discounted_fee'] * $todays_conversion_rate, 2) : '';
-    $dis_programme_original_fee = $dis_programme_increment_percentage ? round($dis_programme_fee + ($dis_programme_fee * $dis_programme_increment_percentage), 2) : round($dis_programme_fee + ($dis_programme_fee * 0.80), 2);
+    $dis_programme_original_fee = (float)$dis_programme_increment_percentage ? round((float)$dis_programme_fee + ((float)$dis_programme_fee * (float)$dis_programme_increment_percentage), 2) : round((float)$dis_programme_fee + ((float)$dis_programme_fee * 0.80), 2);
     $dis_programme_monthly_fee = $row_DisProg['monthly_instalment'] ? round($row_DisProg['monthly_instalment'] * $todays_conversion_rate, 2) : '';
 
     $dis_programme_video_url = $row_DisProg['video_url'] ? $row_DisProg['video_url'] : '';

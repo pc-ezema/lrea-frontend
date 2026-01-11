@@ -1038,24 +1038,44 @@
 
         function get_cart_count() {
             $.ajax({
-                url: "<?php echo $uk_ajax_include_path."add-to-cart-ajax.php"; ?>",
+                url: "<?php echo $uk_ajax_include_path . 'add-to-cart-ajax.php'; ?>",
                 method: "POST",
                 dataType: "json",
                 data: {
                     action: "count"
                 },
-                success: function(data) {
-                    if (data.count > 0) {
-                        $(".cart-badge").show();
-                        $(".count-wish").html(data.count);
-                    }
-                    else {
-                        $(".cart-badge").hide();
-                        $(".count-wish").html('0');
+                success: function (data) {
+                    const count = parseInt(data.count, 10) || 0;
+                    const $badge = $(".cart-badge");
+
+                    if (!$badge.length) return; // safety
+
+                    if (count > 0) {
+                        $badge.text(count).show();
+                    } else {
+                        $badge.text(0).hide();
                     }
                 },
-                error: function(){
-                    return parseInt($(".count-wish").first().text(), 10);
+                error: function () {
+                    const fallback = parseInt($(".count-wish").first().text(), 10) || 0;
+                    return fallback;
+                }
+            });
+        }
+
+        function loadMiniCart() {
+            var currency = '<?php echo $_SESSION['coresite_curr_currency'] ?? PREFERRED_CURRENCY; ?>';
+
+            $.ajax({
+                url: '<?php echo $uk_ajax_include_path; ?>load-mini-cart.php', // adjust path as needed
+                method: 'GET',
+                success: function(html) {
+                    // Replace the content of the container
+                    $(".mini-cart-wrapper").html(html);
+                    
+                },
+                error: function(xhr) {
+                    console.error("Mini cart error:", xhr.status);
                 }
             });
         }
@@ -1152,6 +1172,7 @@
                             // $this.closest(".cart-info").find(".show-cart-button").html('<div class="course-b-sect mt-2 remove-from-cart"><button class="btn btn-outline-danger btn-block btn-sm lt-sp"><i class="fa fa-times"></i> Remove</button></div>');
 
                             get_cart_count();
+                            // loadMiniCart();
 
                             load_cart_items_in_navbar(); <?php // call the function that populates the navbar with the cart items ?>
                             loadCartItemInModal();
@@ -1171,6 +1192,8 @@
                             if ($this.hasClass('one-click-enrol')) {
                                 window.location = "<?php echo $link_root_path; ?>cart";
                             }
+
+                            location.reload(); // force full refresh
                         }
                         else {
                             $this.find('.fa-spinner.fa-spin').remove(); 
@@ -1204,6 +1227,9 @@
                         load_cart_items_in_navbar();
                         
                         get_cart_count();
+                        // loadMiniCart();
+
+                        location.reload(); // force full refresh
                     }
                 },
                 error: function(){
@@ -1236,6 +1262,7 @@
                         <?php } ?>
                         
                         get_cart_count();
+                        // loadMiniCart();
 
                         if (longitude == $('.cart-info').attr('data-id')) { <?php // if the programme that was removed is the current one on the individual programme page, show the 'add to cart' button ?>
                             $('.show-cart-button').show();
@@ -1255,6 +1282,8 @@
                                 }
                             }
                         });
+
+                        location.reload(); // force full refresh
                     }
                 }
             });
@@ -1273,6 +1302,9 @@
                         load_cart_items_in_navbar();
                         
                         get_cart_count();
+                        // loadMiniCart();
+
+                        location.reload(); // force full refresh
                     },
                     complete:function(e) {
                         $(this).remove("i");

@@ -4068,3 +4068,10 @@ if (!function_exists('get_subscription_courses_breakdown')) {
         return $final_return_value;
     }
 }
+
+// Safe show_amount function (PHP 8+ compatible)
+function show_amount($amount) {
+    // Remove commas, ensure float
+    $float_amount = is_numeric(str_replace(',', '', $amount)) ? (float) str_replace(',', '', $amount) : 0.0;
+    return number_format($float_amount, 2);
+}

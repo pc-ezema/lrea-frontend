@@ -81,58 +81,74 @@ if ($display_new_add_to_cart_button && in_array($dis_programme_subcategory_id, a
             </div>
 
             <!-- Footer (Enroll button + price) -->
-            <div class="d-flex justify-content-between align-items-center mt-auto">
-                <a href="<?php echo $this_box_url; ?>" class="btn btn-sm btn-danger">Course Details</a>
+            <div class="course-footer d-flex justify-content-between align-items-center mt-auto">
+                <!-- Course Details Button -->
+                <a href="<?php echo $this_box_url; ?>"
+                    class="btn btn-sm btn-danger px-3 fw-semibold shadow-sm flex-grow-0">
+                    Course Details
+                </a>
 
-                <?php if ($dis_programme_fee) { // Display original fee if programme is not a free course. ?>                        
-                    <div class="d-flex align-items-center">
-                        <div class="d-flex align-items-end">
-                            <h5 class="text-bold text-white mb-0 me-1" style="color: var(--green) !important">
-                                <?php if ($show_monthly_fee_on_prog_boxes && $cosmetics_dis_programme_fee) { // Show the monthly fee for programmes that the cosmetics fee is enabled for. ?>
-                                    <?php // Instalment fee
-                                        if ($dis_country_programme_max_instalments) { // Use the max number of instalments value that has been set for the country if there's one.
-                                            $instalmental_fee_percentage_increase = get_increment_percentage($dis_country_programme_max_instalments);
-                                            $estimated_monthly_fee = round(($dis_programme_fee + ($dis_programme_fee * $instalmental_fee_percentage_increase))/$dis_country_programme_max_instalments, 2);
-                                        }
-                                        elseif ($dis_programme_max_instalments > 1) { // Using the max number of instalments value
-                                            $instalmental_fee_percentage_increase = get_increment_percentage($dis_programme_max_instalments);
-                                            $estimated_monthly_fee = round(($dis_programme_fee + ($dis_programme_fee * $instalmental_fee_percentage_increase))/$dis_programme_max_instalments, 2);
-                                        }
-                                        else {
-                                            $estimated_monthly_fee = highest_instalment_amount($dis_programme_instalment_duration, $dis_programme_fee); 
-                                        }
-                                    ?>
+                <?php if ($dis_programme_fee) : ?>
+                    <?php
+                    /* -----------------------------
+                        | Resolve fees safely
+                    ----------------------------- */
+                    $current_fee  = $cosmetics_dis_programme_fee ?: $dis_programme_fee;
+                    $original_fee = $cosmetics_dis_programme_original_fee ?: $dis_programme_original_fee;
+                    ?>
 
-                                    <?php if ($estimated_monthly_fee) echo $symbol_for_programme_currency.' '.show_amount($estimated_monthly_fee); ?><span class="desc">/mo</span>
-                                <?php } else { ?>
-                                    <?php if ($cosmetics_dis_programme_fee) { ?>
-                                        <?php if ($cosmetics_dis_programme_fee) echo $symbol_for_programme_currency.' '.show_amount($cosmetics_dis_programme_fee); ?>
-                                    <?php } else { ?>
-                                        <?php if ($dis_programme_fee) echo $symbol_for_programme_currency.' '.show_amount($dis_programme_fee); elseif ($enable_free_courses && !$dis_programme_fee) echo 'Free'; ?>
-                                    <?php } ?>
-                                <?php } ?>
-                            </h5>
+                    <div class="price-wrapper d-flex flex-column align-items-end text-end flex-grow-0">
+
+                        <!-- Current / Monthly Price -->
+                        <div class="current-price d-flex align-items-baseline gap-1">
+                            <span class="currency-symbol"><?php echo $symbol_for_programme_currency; ?></span>
+                            <span class="price-value">
+                                <?php
+                                if ($show_monthly_fee_on_prog_boxes && $cosmetics_dis_programme_fee) {
+
+                                    if ($dis_country_programme_max_instalments) {
+                                        $instalmental_fee_percentage_increase = get_increment_percentage($dis_country_programme_max_instalments);
+                                        $estimated_monthly_fee = round(
+                                            ($dis_programme_fee + ($dis_programme_fee * $instalmental_fee_percentage_increase))
+                                                / $dis_country_programme_max_instalments,
+                                            2
+                                        );
+                                    } elseif ($dis_programme_max_instalments > 1) {
+                                        $instalmental_fee_percentage_increase = get_increment_percentage($dis_programme_max_instalments);
+                                        $estimated_monthly_fee = round(
+                                            ($dis_programme_fee + ($dis_programme_fee * $instalmental_fee_percentage_increase))
+                                                / $dis_programme_max_instalments,
+                                            2
+                                        );
+                                    } else {
+                                        $estimated_monthly_fee = highest_instalment_amount(
+                                            $dis_programme_instalment_duration,
+                                            $dis_programme_fee
+                                        );
+                                    }
+
+                                    echo show_amount($estimated_monthly_fee);
+                                } else {
+                                    echo show_amount($current_fee);
+                                }
+                                ?>
+                            </span>
+
+                            <?php if ($show_monthly_fee_on_prog_boxes && $cosmetics_dis_programme_fee) : ?>
+                                <span class="price-period">/mo</span>
+                            <?php endif; ?>
                         </div>
-                        
-                        <?php if ($dis_programme_fee) { // Display original fee if programme is not a free course. ?>                        
-                            <div class="d-flex justify-content-between align-items-end">
-                                <strike class="text-white">
-                                    <h6 class="ft-md text-white mb-0 me-1" style="color: var(--green) !important">
-                                        <?php if ($show_monthly_fee_on_prog_boxes && $cosmetics_dis_programme_fee && $da_prog_has_instalment) { // Show the cosmetics programme fee here for programmes that cosmetics fee is enabled for. ?>
-                                            <?php if ($cosmetics_dis_programme_fee) echo $symbol_for_programme_currency.' '.show_amount($cosmetics_dis_programme_fee); ?>
-                                        <?php } else { ?>
-                                            <?php if ($cosmetics_dis_programme_original_fee) { ?> 
-                                                <?php echo $symbol_for_programme_currency.' '.show_amount($cosmetics_dis_programme_original_fee); ?>
-                                            <?php } else { ?>
-                                                <?php echo $symbol_for_programme_currency.' '.show_amount($dis_programme_original_fee); ?>
-                                            <?php } ?>
-                                        <?php } ?>
-                                    </h6>
-                                </strike>
+
+                        <!-- Original (Strike) Price -->
+                        <?php if ($original_fee && $current_fee && $original_fee > $current_fee) : ?>
+                            <div class="original-price mt-1">
+                                <del><?php echo $symbol_for_programme_currency . ' ' . show_amount($original_fee); ?></del>
                             </div>
-                        <?php } ?>
+                        <?php endif; ?>
+
                     </div>
-                <?php } ?>
+                <?php endif; ?>
+
             </div>
         </div>
     </div>
