@@ -122,3 +122,6 @@
             "dimension3" => ""
         );
     }
+
+    //  echo '<pre>'; var_dump($dis_programme_fee); echo '</pre>';
+    //             exit;

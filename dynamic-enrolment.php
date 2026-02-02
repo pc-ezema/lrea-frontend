@@ -1245,7 +1245,7 @@
                 if ($allow_stripe_payment) {
                     // if currency is among acceptable stripe currencies
                     if (in_array($dis_programme_currency, $stripe_acceptable_currencies)) {   
-                        $stripe_amount = $dis_programme_fee;
+                        $stripe_amount = $total_fees_in_cart ?:$dis_programme_fee;
                         $stripe_currency = $dis_programme_currency;
 
                         if ($demo_stripe_payment) {
@@ -1347,7 +1347,7 @@
              
             $payload = json_encode($data);
 
-            //echo '<pre>'; var_dump($data, $payload); echo '</pre>'; exit();
+            echo '<pre>'; var_dump($data, $payload); echo '</pre>'; exit();
              
             // Prepare new cURL resource
             $ch = curl_init('https://secure.paytabs.com/payment/request');
@@ -1886,7 +1886,7 @@
                                                         $transaction_ref_paystack = time().$ref_separator.$payment_var_order_id;
 
                                                         if (in_array($dis_programme_currency, array('NGN'))) {
-                                                            $amount_paystack = $dis_programme_fee;
+                                                            $amount_paystack = $total_fees_in_cart ?: $dis_programme_fee;
                                                             $currency_paystack = $dis_programme_currency;
                                                         }
                                                     ?>       

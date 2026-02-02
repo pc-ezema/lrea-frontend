@@ -1,4 +1,4 @@
-<section> 
+<div class="py-5"> 
     <h1 class="partner-section-title">Partner with Us</h1>    
     <div class="partner-section">
         <div class="card partner-card" onclick="window.location.href='<?php echo $link_root_path; ?>subscriptions'" style="cursor:pointer;">
@@ -25,7 +25,7 @@
             <button class="partner-btn openPartnerModal">Become an Ambassador</button>
         </div>
     </div>
-</section>
+</div>
 <!-- Modal -->
 <div class="partner-modal" id="myPartnerModal">
     <div class="partner-modal-content">
@@ -50,7 +50,7 @@
     }
     .partner-section {
         display: flex;
-        gap: 20px;
+        gap: 10px;
         justify-content: center;
         text-align: center;
         flex-wrap: wrap;

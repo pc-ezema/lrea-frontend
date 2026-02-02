@@ -1229,6 +1229,17 @@
                         get_cart_count();
                         // loadMiniCart();
 
+                        const el = document.querySelector('.total-in-checkout');
+
+                        if (el) {
+                            el.dataset.progtotal = data.total_raw;
+                            el.dataset.fbcur     = data.currency;
+                            el.dataset.fbval     = data.total_value;
+                            el.dataset.fbnum     = data.count;
+
+                            el.textContent = data.symbol + data.total_value;
+                        }
+
                         location.reload(); // force full refresh
                     }
                 },
